@@ -1,5 +1,9 @@
 # Budgetoo
 
+[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/Flet/semistandard)
+[![npm version](https://badge.fury.io/js/npm.svg)](https://badge.fury.io/js/npm)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
+
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
 
@@ -50,4 +54,3 @@ Specify what it takes to deploy your app.
 * Development Browser Extensions
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
-
