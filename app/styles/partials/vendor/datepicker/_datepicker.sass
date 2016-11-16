@@ -1,0 +1,15 @@
+$secondary-color: #4DB6AC
+
+$datepicker-weekday-bg: darken($secondary-color, 7%)
+$datepicker-date-bg: $secondary-color
+$datepicker-year: rgba(255, 255, 255, .4)
+$datepicker-focus: rgba(0,0,0, .05)
+$datepicker-selected: $secondary-color
+$datepicker-selected-outfocus: desaturate(lighten($secondary-color, 35%), 15%)
+
+.btn-flat
+  @extend .mdl-button
+
+@import "lib/default"
+@import "lib/default.date"
+@import "lib/default.time"
