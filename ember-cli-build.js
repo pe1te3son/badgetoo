@@ -9,6 +9,7 @@ module.exports = function(defaults) {
     sassOptions: {
       extension: 'sass',
       includePaths: [
+        'bower_components/materialize/sass'
       ],
       nodeSass // Workaround for ember-cli-sass bug https://github.com/aexmachina/ember-cli-sass/issues/117
     }
@@ -26,6 +27,6 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
-
+  app.import('bower_components/materialize/js/modal.js');
   return app.toTree();
 };
