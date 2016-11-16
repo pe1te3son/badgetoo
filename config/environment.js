@@ -1,8 +1,8 @@
 /* jshint node: true */
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   var ENV = {
-    modulePrefix: 'budgetoo',
+    modulePrefix: 'spendings-tracker',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',

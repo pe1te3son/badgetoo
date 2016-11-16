@@ -1,7 +1,7 @@
 {
-  "name": "budgetoo",
+  "name": "spendings-tracker",
   "version": "0.0.0",
-  "description": "Small description for budgetoo goes here",
+  "description": "Capstone project for udacity",
   "private": true,
   "directories": {
     "doc": "doc",
@@ -16,7 +16,7 @@
   "engines": {
     "node": ">= 0.12.0"
   },
-  "author": "",
+  "author": "Peter Janak",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
@@ -47,9 +47,6 @@
   },
   "semistandard": {
     "globals": [
-      "google",
-      "componentHandler",
-      "fetch"
     ],
     "ignore": [
       "node_modules",
