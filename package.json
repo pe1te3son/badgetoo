@@ -41,7 +41,22 @@
     "ember-resolver": "^2.0.3",
     "ember-welcome-page": "^1.0.3",
     "loader.js": "^4.0.10",
-    "node-sass": "^3.12.5"
     "node-sass": "^3.12.5",
+    "semistandard": "^9.1.0"
+  },
+  "semistandard": {
+    "globals": [
+      "google",
+      "componentHandler",
+      "fetch"
+    ],
+    "ignore": [
+      "node_modules",
+      "bower_components",
+      "testem.js",
+      "/vendor/**/*",
+      "ember-cli-build.js",
+      "/config/**/*"
+    ]
   }
 }
