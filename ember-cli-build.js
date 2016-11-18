@@ -31,6 +31,5 @@ module.exports = function(defaults) {
   app.import('vendor/picker.date.js');
   app.import("vendor/picker.time.js");
   app.import("bower_components/material-design-lite/material.js");
-  app.import('vendor/idbPromised.js');
   return app.toTree();
 };

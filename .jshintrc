@@ -3,8 +3,7 @@
     "document",
     "window",
     "-Promise",
-    "componentHandler",
-    "idb"
+    "componentHandler"
   ],
   "browser": true,
   "boss": true,
