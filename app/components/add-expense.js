@@ -33,7 +33,8 @@ export default Ember.Component.extend({
       this.$('.mdl-textfield').removeClass('is-dirty');
     },
     addExpense () {
-      console.log(this.get('expense'));
+      this.sendAction('action', this.get('expense'));
+      this.send('clearInputs');
     }
   }
 });
