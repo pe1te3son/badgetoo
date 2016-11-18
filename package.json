@@ -47,6 +47,8 @@
   },
   "semistandard": {
     "globals": [
+      "componentHandler",
+      "idb"
     ],
     "ignore": [
       "node_modules",
