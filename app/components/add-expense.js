@@ -2,7 +2,12 @@ import Ember from 'ember';
 import $ from 'jquery';
 
 export default Ember.Component.extend({
-  attributeBindings: ['dialog-open'],
+  expense: {
+    sum: null,
+    category: '',
+    name: ''
+  },
+  currency: '£',
   expenseCategories: [
     'Charity',
     'Clothing',
