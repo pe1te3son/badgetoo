@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import $ from 'jquery';
+// import $ from 'jquery';
 
 export default Ember.Component.extend({
   expense: {
@@ -24,21 +24,16 @@ export default Ember.Component.extend({
     'Vacation'
   ],
   didInsertElement () {
-    var dialog = document.getElementById(this.$().attr('id'));
-    var showDialogButton = $('[dialog-open]');
-    console.log(dialog, showDialogButton);
-    if (!dialog.showModal) {
-      dialogPolyfill.registerDialog(dialog);
+    componentHandler.upgradeAllRegistered();
+  },
+
+  actions: {
+    clearInputs () {
+      this.$('.mdl-textfield input[type=text]').val('');
+      this.$('.mdl-textfield').removeClass('is-dirty');
+    },
+    addExpense () {
+      console.log(this.get('expense'));
     }
-    showDialogButton.click(function () {
-      dialog.showModal();
-    });
-    // dialog.querySelector('.close').addEventListener('click', function () {
-    //   dialog.close();
-    // });
-    $(dialog).on('click', function () {
-      dialog.close();
-    });
-    componentHandler.upgradeAllRegistered()
   }
 });
