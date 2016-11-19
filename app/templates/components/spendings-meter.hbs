@@ -1,3 +1,11 @@
-<div>
-  <p class="current-spendings text-right">{{currency}}{{data}}</p>
+<div class="text-right mdl-grid spendings-cont">
+
+  <div class="mdl-cell mdl-cell--12-col current-spendings">
+    <div class="spendings-currency">{{currency}}</div>
+    <div class="spendings-value">{{data}}</div>
+  </div>
+
+  <div class="mdl-cell mdl-cell--12-col today-date-display">
+    {{todaysDate}}
+  </div>
 </div>
