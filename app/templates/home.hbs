@@ -2,13 +2,17 @@
   <div class="page-content mdl-grid st--grid-max">
     {{pie-chart class="st--pie-chart mdl-cell mdl-cell--6-col"}}
 
-    <div class="mdl-cell mdl-cell--6-col">
+    <div class="mdl-cell mdl-cell--6-col text-right" id="spending-meter-cont">
       {{spendings-meter data=spendingsMeter}}
+
+      <div class="mdl-cell mdl-cell--12-col">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="st--btn-add-expense" em-modal-open>
+          Add Expense
+        </button>
+      </div>
     </div>
   </div>
-  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent st--add-expense" id="st--btn-add-expense" em-modal-open>
-    Add Expense
-  </button>
+
   {{#em-modal class="em--modal"}}
     {{add-expense class="mdl-dialog st--form-add-expense" role="dialog" aria-labelledby="dialog-title" action="saveRecord"}}
   {{/em-modal}}
