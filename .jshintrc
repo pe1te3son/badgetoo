@@ -3,7 +3,8 @@
     "document",
     "window",
     "-Promise",
-    "componentHandler"
+    "componentHandler",
+    "google"
   ],
   "browser": true,
   "boss": true,
