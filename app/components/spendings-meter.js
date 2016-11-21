@@ -7,6 +7,9 @@ export default Ember.Component.extend({
   didReceiveAttrs () {
     const currency = this.get('userSettings').currency();
     this.set('currency', currency);
-    this.set('todaysDate', moment().format('DD MMM YYYY'));
+    this.set('todaysDate', {
+      dayName: moment().format('dddd'),
+      date: moment().format('MMMM Do YYYY')
+    });
   }
 });
