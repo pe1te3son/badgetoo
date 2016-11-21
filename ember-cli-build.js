@@ -1,7 +1,7 @@
 /*jshint node:true*/
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-var nodeSass = require("node-sass");
+var nodeSass = require('node-sass');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
@@ -9,7 +9,7 @@ module.exports = function(defaults) {
     sassOptions: {
       extension: 'sass',
       includePaths: [
-        "bower_components/material-design-lite/src"
+        'bower_components/material-design-lite/src'
       ],
       nodeSass // Workaround for ember-cli-sass bug https://github.com/aexmachina/ember-cli-sass/issues/117
     }
@@ -29,7 +29,7 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
   app.import('vendor/picker.js');
   app.import('vendor/picker.date.js');
-  app.import("vendor/picker.time.js");
-  app.import("bower_components/material-design-lite/material.js");
+  app.import('vendor/picker.time.js');
+  app.import('bower_components/material-design-lite/material.js');
   return app.toTree();
 };
