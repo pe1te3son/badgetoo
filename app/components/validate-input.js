@@ -18,9 +18,18 @@ export default Ember.Component.extend({
     emPattern: 'Pattern does not match'
   },
 
+  didInsertElement () {
+    const _this = this;
+    const input = this.$().children('input');
     if (this.get('messages')) {
       this.set('errorMessages', this.get('messages'));
     }
+    input.on('blur', () => {
+      if (!this.$().hasClass('is-touched')) {
+        this.$().addClass('is-touched');
+        this.runValidation();
+      }
+    });
 
     this.$().closest('form').find('button[type=submit]').on('click', () => {
       this.$().addClass('is-touched');
