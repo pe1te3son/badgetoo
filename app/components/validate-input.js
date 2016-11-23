@@ -18,6 +18,9 @@ export default Ember.Component.extend({
     emPattern: 'Pattern does not match'
   },
 
+    if (this.get('messages')) {
+      this.set('errorMessages', this.get('messages'));
+    }
 
     this.$().closest('form').find('button[type=submit]').on('click', () => {
       this.$().addClass('is-touched');
