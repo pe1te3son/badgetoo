@@ -42,6 +42,24 @@ export default Ember.Component.extend({
 
     this.set('needToValidate', needToValidate);
   },
+
+  didUpdateAttrs () {
+    this.runValidation();
+  },
+
+  runValidation () {
+    this.get('needToValidate').forEach(item => {
+      item.isInvalid = this[item.name](item.value);
+    });
+
+    this.filterInvalidInputs();
+    this.setErrorCssClass();
+  },
+
+  setErrorCssClass () {
+    return this.get('hasError') ? this.$().addClass('is-invalid') : this.$().removeClass('is-invalid');
+  },
+
   filterInvalidInputs () {
     let containsError = {};
     const findInvalidValues = this.get('needToValidate').filterBy('isInvalid', true);
