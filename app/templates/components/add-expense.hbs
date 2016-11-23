@@ -1,26 +1,26 @@
 <h4 class="mdl-dialog__title" id="dialog-title">Add expense</h4>
 <form class="st--form-pad">
   <div class="mdl-grid st--form-max-width">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--11-col st--sum-input">
-      <span class="expense-currency">{{currency}}</span>
-      {{input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sum" value=expense.sum}}
-      <label class="mdl-textfield__label" for="sum">Sum</label>
-      <span class="mdl-textfield__error">Input is not a number!</span>
-    </div>
 
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
-      {{input list="select-expense-catetory" name="expenseCategories" class="mdl-textfield__input" id="expense-category" value=expense.category}}
+    {{#validate-input class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--11-col st--sum-input" validate=expense.sum messages=errorMessagesSum}}
+      <span class="expense-currency">{{currency}}</span>
+      {{input class="mdl-textfield__input" type="text" id="sum" value=expense.sum em-required="required" em-pattern="^\d+$"}}
+      <label class="mdl-textfield__label" for="sum">Sum</label>
+    {{/validate-input}}
+
+    {{#validate-input class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col"  validate=expense.category messages=errorMessagesCategory}}
+      {{input list="select-expense-catetory" name="expenseCategories" class="mdl-textfield__input" id="expense-category" value=expense.category em-required="required"}}
       <label for="expense-category" class="mdl-textfield__label">Select Category</label>
       <datalist id="select-expense-catetory">
         {{#each expenseCategories as |category|}}
           <option value="{{category}}"></option>
         {{/each}}
       </datalist>
-    </div>
+    {{/validate-input}}
+
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
       {{input class="mdl-textfield__input" type="text" id="expense-name" value=expense.name}}
       <label class="mdl-textfield__label" for="expense-name">Expense Name ( optional )</label>
-      {{!-- <span class="mdl-textfield__error"></span> --}}
     </div>
 
   </div>
