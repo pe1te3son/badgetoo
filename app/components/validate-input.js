@@ -3,6 +3,10 @@ import $ from 'jquery';
 
 export default Ember.Component.extend({
 
+  validationAttributes: ['em-pattern', 'em-min', 'em-max', 'em-required'],
+
+  needToValidate: {},
+
   containsError: null,
 
   hasError: null,
@@ -19,6 +23,25 @@ export default Ember.Component.extend({
       this.$().addClass('is-touched');
       this.runValidation();
     });
+
+    let needToValidate = [];
+
+    $(input).each(function () {
+      $.each(this.attributes, function () {
+        if (this.specified) {
+          if (_this.get('validationAttributes').indexOf(this.name) !== -1) {
+            needToValidate.pushObject({
+              name: this.name.camelize(),
+              value: this.value,
+              isInvalid: false
+            });
+          }
+        }
+      });
+    });
+
+    this.set('needToValidate', needToValidate);
+  },
   filterInvalidInputs () {
     let containsError = {};
     const findInvalidValues = this.get('needToValidate').filterBy('isInvalid', true);
