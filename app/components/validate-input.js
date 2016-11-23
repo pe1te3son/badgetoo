@@ -3,6 +3,10 @@ import $ from 'jquery';
 
 export default Ember.Component.extend({
 
+  containsError: null,
+
+  hasError: null,
+
   errorMessages: {
     emMin: 'Too short!',
     emMax: 'Too long!',
@@ -15,6 +19,16 @@ export default Ember.Component.extend({
       this.$().addClass('is-touched');
       this.runValidation();
     });
+  filterInvalidInputs () {
+    let containsError = {};
+    const findInvalidValues = this.get('needToValidate').filterBy('isInvalid', true);
+    findInvalidValues.forEach(item => {
+      containsError[item.name] = true;
+    });
+    this.set('containsError', containsError);
+    return findInvalidValues.length ? this.set('hasError', true) : this.set('hasError', false);
+  },
+
   emMin (value) {
     if (this.get('validate')) {
       return this.get('validate').length < parseInt(value);
