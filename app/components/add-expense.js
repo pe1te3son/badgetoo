@@ -3,7 +3,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   expense: {
-    sum: null,
+    sum: '',
     category: '',
     name: ''
   },
@@ -38,8 +38,12 @@ export default Ember.Component.extend({
 
   actions: {
     clearInputs () {
-      this.$('.mdl-textfield input[type=text]').val('');
-      this.$('.mdl-textfield').removeClass('is-dirty');
+      this.set('expense', {
+        sum: '',
+        category: '',
+        name: ''
+      });
+      this.$('.mdl-textfield').removeClass('is-dirty is-invalid is-touched');
     },
     addExpense () {
       this.sendAction('action', this.get('expense'));
