@@ -3,6 +3,13 @@ import $ from 'jquery';
 
 export default Ember.Component.extend({
 
+  errorMessages: {
+    emMin: 'Too short!',
+    emMax: 'Too long!',
+    emRequired: 'This field can\'t be blank',
+    emPattern: 'Pattern does not match'
+  },
+
   emMin (value) {
     if (this.get('validate')) {
       return this.get('validate').length < parseInt(value);
