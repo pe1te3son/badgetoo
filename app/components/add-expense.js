@@ -23,6 +23,15 @@ export default Ember.Component.extend({
     'Utilities',
     'Vacation'
   ],
+
+  errorMessagesSum: {
+    emRequired: 'This field can\'t be blank',
+    emPattern: 'Must be a number!'
+  },
+
+  errorMessagesCategory: {
+    emRequired: 'Must select a category'
+  },
   didInsertElement () {
     componentHandler.upgradeAllRegistered();
   },
