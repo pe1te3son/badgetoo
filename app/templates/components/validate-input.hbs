@@ -1,1 +1,13 @@
 {{yield}}
+
+<span class="mdl-textfield__error">
+{{#if containsError.emRequired}}
+  {{errorMessages.emRequired}}
+{{else if containsError.emMin}}
+  {{errorMessages.emMin}}
+{{else if containsError.emMax}}
+  {{errorMessages.emMax}}
+{{else if containsError.emPattern}}
+  {{errorMessages.emPattern}}
+{{/if}}
+</span>
