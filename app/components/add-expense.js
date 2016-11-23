@@ -54,8 +54,12 @@ export default Ember.Component.extend({
       this.$('.mdl-textfield').removeClass('is-dirty is-invalid is-touched');
     },
     addExpense () {
-      this.sendAction('action', this.get('expense'));
-      this.send('clearInputs');
+      Ember.run.later(() => {
+        if (!this.$().find('.is-invalid').length) {
+          this.sendAction('action', this.get('expense'));
+          this.send('clearInputs');
+        }
+      }, 200);
     }
   }
 });
