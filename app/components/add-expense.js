@@ -32,6 +32,14 @@ export default Ember.Component.extend({
   errorMessagesCategory: {
     emRequired: 'Must select a category'
   },
+
+  init () {
+    this._super();
+    Ember.TextSupport.reopen({
+      attributeBindings: ['em-required', 'em-min', 'em-max', 'em-pattern']
+    });
+  },
+
   didInsertElement () {
     componentHandler.upgradeAllRegistered();
   },
