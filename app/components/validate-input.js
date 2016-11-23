@@ -10,6 +10,11 @@ export default Ember.Component.extend({
     emPattern: 'Pattern does not match'
   },
 
+
+    this.$().closest('form').find('button[type=submit]').on('click', () => {
+      this.$().addClass('is-touched');
+      this.runValidation();
+    });
   emMin (value) {
     if (this.get('validate')) {
       return this.get('validate').length < parseInt(value);
