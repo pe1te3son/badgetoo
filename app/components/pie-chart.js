@@ -1,17 +1,34 @@
 import Ember from 'ember';
+import $ from 'jquery';
 
 export default Ember.Component.extend({
 
   chartOptions: {
     title: 'Spendings by category',
-    backgroundColor: '#f5f5f5',
-    height: 400
+    backgroundColor: '#f5f5f5'
   },
 
   didInsertElement () {
+    const _this = this;
+    this.setChartWidth();
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(() => {
       this.initiateChart();
+    });
+
+    $(window).resize(function () {
+      if (this.isResizing) {
+        clearTimeout(this.isResizing);
+      }
+
+      this.isResizing = setTimeout(function () {
+        $(this).trigger('hasResized');
+      }, 400);
+    });
+
+    $(window).on('hasResized', function () {
+      _this.setChartWidth();
+      _this.drawChart();
     });
   },
 
@@ -40,6 +57,16 @@ export default Ember.Component.extend({
 
   didDestroyElement () {
     this.get('chart').clearChart();
+    $(window).off('resize');
+    $(window).off('hasResized');
+  },
+
+  setChartWidth () {
+    const elWidth = this.$().width();
+
+    if (elWidth > 300) {
+      this.get('chartOptions.width', elWidth);
+    }
   }
 
 });
