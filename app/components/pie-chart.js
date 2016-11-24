@@ -2,30 +2,44 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+  chartOptions: {
+    title: 'Spendings by category',
+    backgroundColor: '#f5f5f5',
+    height: 400
+  },
+
   didInsertElement () {
-    const elId = this.$().attr('id');
     google.charts.load('current', {'packages': ['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart () {
-      var data = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        ['Work', 11],
-        ['Eat', 2],
-        ['Commute', 2],
-        ['Watch TV', 2],
-        ['Sleep', 7]
+    google.charts.setOnLoadCallback(() => {
+      this.initiateChart();
+    });
+  },
+
+  initiateChart () {
+    const elId = this.$().attr('id');
+    this.set('chart', new google.visualization.PieChart(document.getElementById(elId)));
+    this.drawChart();
+  },
+
+  drawChart () {
+    let data;
+    if (this.get('data').length <= 1) {
+      data = google.visualization.arrayToDataTable([
+        ['Category', 'Spendings'],
+        ['None', 1]
       ]);
-
-      var options = {
-        title: 'My Daily Activities',
-        backgroundColor: '#f5f5f5',
-        height: 400
-      };
-
-      var chart = new google.visualization.PieChart(document.getElementById(elId));
-
-      chart.draw(data, options);
+    } else {
+      data = google.visualization.arrayToDataTable(this.get('data'));
     }
+    this.get('chart').draw(data, this.get('chartOptions'));
+  },
+
+  didUpdateAttrs () {
+    this.drawChart();
+  },
+
+  didDestroyElement () {
+    this.get('chart').clearChart();
   }
 
 });
