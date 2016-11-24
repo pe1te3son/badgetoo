@@ -56,6 +56,8 @@ export default Ember.Component.extend({
     addExpense () {
       Ember.run.later(() => {
         if (!this.$().find('.is-invalid').length) {
+          let sum = this.get('expense').sum;
+          this.set('expense.sum', parseFloat(sum).toFixed(2));
           this.sendAction('action', this.get('expense'));
           this.send('clearInputs');
         }
