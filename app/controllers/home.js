@@ -31,6 +31,19 @@ export default Ember.Controller.extend({
     return;
   },
 
+  formatedChartData: function () {
+    const data = [
+      ['Category', 'Spendings']
+    ];
+
+    this.get('sumByCategory').forEach(category => {
+      data.push(
+        [category.category, category.sum]
+      );
+    });
+    return data;
+  }.property('sumByCategory'),
+
     saveRecord (record) {
       let newExpense = this.store.createRecord('expense', record);
       newExpense.save();
