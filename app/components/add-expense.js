@@ -30,7 +30,7 @@ export default Ember.Component.extend({
   },
 
   errorMessagesCategory: {
-    emRequired: 'Must select a category'
+    emRequired: 'Select or add your own category'
   },
 
   init () {
