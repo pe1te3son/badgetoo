@@ -18,10 +18,10 @@
       </datalist>
     {{/validate-input}}
 
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
-      {{input class="mdl-textfield__input" type="text" id="expense-name" value=expense.name}}
-      <label class="mdl-textfield__label" for="expense-name">Expense Name ( optional )</label>
-    </div>
+    {{#validate-input class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col" validate=expense.name messages=errorMessagesSum}}
+      {{input class="mdl-textfield__input" type="text" id="expense-name" value=expense.name em-required="required"}}
+      <label class="mdl-textfield__label" for="expense-name">Expense Title</label>
+    {{/validate-input}}
 
   </div>
   <div class="mdl-dialog__actions">
