@@ -4,10 +4,32 @@
 
 .st--main-nav
   .mdl-navigation__link
-    color: $color2 !important
+    color: $color1 !important
 
 .st--title
   color: $color3
 
+.st--icon-link
+  &:hover
+    .material-icons
+      color: $color7 !important
 body
   min-width: 350px
+
+.test-div
+  width: 500px
+  height: 500px
+  background: white
+
+#close-settings
+  display: none
+
+#open-settings
+  display: block
+
+.settings-active
+  #close-settings
+    display: block !important
+
+  #open-settings
+    display: none !important
