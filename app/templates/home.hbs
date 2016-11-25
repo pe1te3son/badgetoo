@@ -6,7 +6,7 @@
       {{spendings-meter data=spendingsMeter}}
 
       <div class="mdl-cell mdl-cell--12-col">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="st--btn-add-expense" em-modal-open>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="st--btn-add-expense" em-modal-open="add-expense-modal">
           Add Expense
         </button>
       </div>
@@ -36,7 +36,11 @@
     </div>
   </div>
 
-  {{#em-modal class="em--modal"}}
+  {{outlet}}
+
+  {{#em-modal class="em--modal" id="add-expense-modal"}}
     {{add-expense class="mdl-dialog st--form-add-expense" role="dialog" aria-labelledby="dialog-title" action="saveRecord"}}
   {{/em-modal}}
+
+
 </main>
