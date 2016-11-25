@@ -1,13 +1,14 @@
 import Ember from 'ember';
-// import $ from 'jquery';
 
 export default Ember.Component.extend({
+  userSettings: Ember.inject.service('user-settings'),
+
   expense: {
     sum: '',
     category: '',
     name: ''
   },
-  currency: '£',
+
   expenseCategories: [
     'Charity',
     'Clothing',
@@ -35,6 +36,7 @@ export default Ember.Component.extend({
 
   init () {
     this._super();
+    this.set('currency', this.get('userSettings').currency());
     Ember.TextSupport.reopen({
       attributeBindings: ['em-required', 'em-min', 'em-max', 'em-pattern']
     });
