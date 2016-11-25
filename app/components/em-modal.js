@@ -5,19 +5,32 @@ export default Ember.Component.extend({
   attributeBindings: ['role'],
   didInsertElement () {
     const $Element = this.$();
-    const $modalBtn = $('[em-modal-open]');
+    const $modalBtn = $(`[em-modal-open=${$Element.attr('id')}]`);
+    const $closeBtn = this.$().find('.em--close-modal');
 
     $Element.attr('role', 'dialog');
     $modalBtn.click(() => {
-      $Element.fadeIn(100);
-      this.lockBackground($Element);
+      this.openModal($Element);
     });
 
     $Element.click(event => {
       if (!$(event.target).parents(`#${this.$().attr('id')}`).length) {
-        $Element.fadeOut(100);
+        this.closeModal();
       }
     });
+
+    $closeBtn.click(() => {
+      this.closeModal();
+    });
+  },
+
+  closeModal () {
+    this.$().fadeOut(100);
+  },
+
+  openModal (el) {
+    el.fadeIn(100);
+    this.lockBackground(el);
   },
 
   lockBackground (el) {
