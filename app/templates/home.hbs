@@ -36,11 +36,11 @@
     </div>
   </div>
 
-  {{outlet}}
-
   {{#em-modal class="em--modal" id="add-expense-modal"}}
     {{add-expense class="mdl-dialog st--form-add-expense" role="dialog" aria-labelledby="dialog-title" action="saveRecord"}}
   {{/em-modal}}
 
 
 </main>
+
+{{outlet}}

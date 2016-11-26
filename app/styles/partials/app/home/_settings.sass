@@ -1,8 +1,88 @@
 .settings-section
   position: absolute
-  background: pink
-  top: 0
+  top: 60px
   bottom: 0
   left: 0
   right: 0
   z-index: 4
+
+.settings-card
+  min-width: 350px
+  position: absolute
+  top: -10px
+  right: 100px
+  background: white
+
+.settings-user-info
+  +clearfix
+  margin-bottom: 15px
+
+.settings-user-avatar
+  float: left
+  width: 50px
+  height: 50px
+  border-radius: 50%
+  overflow: hidden
+  .material-icons
+    font-size: 40px
+    color: white
+    background: #999
+    padding: 5px
+
+.settings-user-name
+  float: left
+  >span
+    margin-left: 20px
+    margin-top: 15px
+
+.settings-value
+  color: $color2
+
+.settings-item
+  margin-bottom: 6px
+  +clearfix
+  .st--chip-value
+    will-change: trasform
+    transition: transform 0.2s ease
+    transform: translateX(0)
+  &:hover
+    .st--chip-value
+      transform: translateX(-10px)
+      transition: transform 0.2s ease
+
+.st--chip
+  position: relative
+  display: block
+  height: 32px
+  border-radius: 16px
+  line-height: 32px
+  background: darken($color1, 5%)
+  padding-left: 12px
+  color: $color2
+
+.st--chip-value
+  position: absolute
+  top: 0
+  right: 35px
+  min-width: 16px
+  text-align: center
+  background: $color8
+  padding-left: 12px
+  padding-right: 12px
+  border-radius: 16px
+  color: white
+  font-size: 1.1rem
+
+.st--chip-edit
+  float: right
+  display: inline-block
+  color: $color8 !important
+  font-size: 1.4rem
+  height: 100%
+  line-height: 32px
+  border-radius: 16px
+  min-width: 36px
+  text-align: center
+  &:hover
+    background: darken($color1, 10%)
+    cursor: pointer
