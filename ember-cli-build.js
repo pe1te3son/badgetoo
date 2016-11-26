@@ -9,7 +9,8 @@ module.exports = function(defaults) {
     sassOptions: {
       extension: 'sass',
       includePaths: [
-        'bower_components/material-design-lite/src'
+        'bower_components/material-design-lite/src',
+        'bower_components/bourbon/app/assets/stylesheets'
       ],
       nodeSass // Workaround for ember-cli-sass bug https://github.com/aexmachina/ember-cli-sass/issues/117
     }
