@@ -1,21 +1,27 @@
 <main class="mdl-layout__content">
   <div class="page-content mdl-grid st--grid-max">
-    {{pie-chart class="mdl-card mdl-card--bg-color st--pie-chart mdl-cell mdl-cell--6-col" data=formatedChartData}}
+    {{pie-chart class="mdl-card mdl-card--bg-color st--pie-chart mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet" data=formatedChartData}}
 
-    <div class="mdl-card mdl-card--bg-color mdl-cell mdl-cell--6-col text-right" id="spending-meter-cont">
-      {{spendings-meter data=spendingsMeter}}
+    <div class="mdl-card mdl-card--bg-color text-right mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet" id="spending-meter-cont">
+
+
+      {{select-date class="mdl-cell mdl-cell--12-col select-date-cont"}}
+
+      {{spendings-meter data=spendingsMeter class="mdl-cell mdl-cell--12-col"}}
 
       <div class="mdl-cell mdl-cell--12-col">
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="st--btn-add-expense" em-modal-open="add-expense-modal">
           Add Expense
         </button>
       </div>
-    </div>
-  </div>
 
-  <div class="mdl-grid">
+
+    </div>{{!-- /#spending-meter-cont --}}
+  </div>{{!-- /.mdl-grid --}}
+
+  <div class="mdl-grid st--grid-max">
     <div class="mdl-cell mdl-cell--12-col">
-      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="expense-table">
+      {{#expense-table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="expense-table"}}
         <thead>
           <tr>
             <th class="mdl-data-table__cell--non-numeric">Title</th>
@@ -32,9 +38,9 @@
             {{/expense-table-cell}}
           {{/each}}
         </tbody>
-      </table>
+      {{/expense-table}}
     </div>
-  </div>
+  </div>{{!-- /.mdl-grid --}}
 
   {{#em-modal class="em--modal" id="add-expense-modal"}}
     {{add-expense class="mdl-dialog st--form-add-expense" role="dialog" aria-labelledby="dialog-title" action="saveRecord"}}
