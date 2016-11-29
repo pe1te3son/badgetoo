@@ -1,0 +1,18 @@
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp"  id="expense-table">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric" {{action "sortByProperty" "name"}}>Title</th>
+      <th class="mdl-data-table__cell--non-numeric" {{action "sortByProperty" "category"}}>Category</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data as |expense|}}
+      {{#expense-table-cell}}
+        <td class="mdl-data-table__cell--non-numeric">{{expense.name}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{expense.category}}</td>
+        <td>{{currency}}{{expense.sum}}</td>
+      {{/expense-table-cell}}
+    {{/each}}
+  </tbody>
+</table>
