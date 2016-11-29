@@ -21,24 +21,7 @@
 
   <div class="mdl-grid st--grid-max">
     <div class="mdl-cell mdl-cell--12-col">
-      {{#expense-table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="expense-table"}}
-        <thead>
-          <tr>
-            <th class="mdl-data-table__cell--non-numeric">Title</th>
-            <th class="mdl-data-table__cell--non-numeric">Category</th>
-            <th>Cost</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each model as |expense|}}
-            {{#expense-table-cell}}
-              <td class="mdl-data-table__cell--non-numeric">{{expense.name}}</td>
-              <td class="mdl-data-table__cell--non-numeric">{{expense.category}}</td>
-              <td>{{currency}}{{expense.sum}}</td>
-            {{/expense-table-cell}}
-          {{/each}}
-        </tbody>
-      {{/expense-table}}
+      {{expenses-table data=model}}
     </div>
   </div>{{!-- /.mdl-grid --}}
 
