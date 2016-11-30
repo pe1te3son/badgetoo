@@ -1,8 +1,11 @@
 import Ember from 'ember';
+import $ from 'jquery';
 
 export default Ember.Component.extend({
   userSettings: Ember.inject.service('user-settings'),
   sortAscending: false,
+  searchQuery: '',
+  tableViewSettings: 'all',
 
   init () {
     this._super();
@@ -33,5 +36,23 @@ export default Ember.Component.extend({
     }
 
     this.set('sortAscending', !this.get('sortAscending'));
+  },
+
+  tableContent: function () {
+    let filter = this.get('searchQuery');
+    let data = this.setContentView(this.get('data'));
+
+    if (this.get('searchQuery').length) {
+      // Display data based on searchQuery
+      let filteredContent = data.filter(function (item, index, enumerable) {
+        return item.get('name').toLowerCase().match(filter.toLowerCase()) || item.get('category').toLowerCase().match(filter.toLowerCase());
+      });
+      return filteredContent;
+    }
+
+    // Display latest on top
+    // Default values if search field empty
+    return data;
+  }.property('searchQuery', 'data.@each', 'tableViewSettings'),
   }
 });
