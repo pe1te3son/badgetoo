@@ -1,3 +1,4 @@
+{{log model}}
 <main class="mdl-layout__content">
   <div class="page-content mdl-grid st--grid-max">
     {{pie-chart class="mdl-card mdl-card--bg-color st--pie-chart mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet" data=formatedChartData}}
@@ -21,7 +22,7 @@
 
   <div class="mdl-grid st--grid-max">
     <div class="mdl-cell mdl-cell--12-col">
-      {{expenses-table data=model}}
+      {{expenses-table data=model id="expenses-table"}}
     </div>
   </div>{{!-- /.mdl-grid --}}
 
