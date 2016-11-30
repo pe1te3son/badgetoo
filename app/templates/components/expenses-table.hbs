@@ -1,4 +1,28 @@
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp"  id="expense-table">
+<div class="table-settings">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable st--float-left">
+     <label class="mdl-button mdl-js-button mdl-button--icon" for="search-query">
+       <i class="material-icons">search</i>
+     </label>
+     <div class="mdl-textfield__expandable-holder">
+       {{input value=searchQuery class="mdl-textfield__input" type="text" id="search-query" placeholder="Search"}}
+       <label class="mdl-textfield__label" for="sample-expandable">Search expense</label>
+     </div>
+   </div>
+
+   <div class="table-view-settings st--float-right">
+     <button class="mdl-button mdl-js-button" id="btn-today" {{action "tableViewSettings" "today"}}>
+        Today
+      </button>
+      <button class="mdl-button mdl-js-button" id="btn-week" {{action "tableViewSettings" "week"}}>
+        Week
+      </button>
+      <button class="mdl-button mdl-js-button mdl-button--raised" id="btn-all" {{action "tableViewSettings" "all"}}>
+        All
+      </button>
+   </div>
+</div>
+
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <thead>
     <tr>
       <th class="mdl-data-table__cell--non-numeric" {{action "sortByProperty" "name"}}>Title</th>
