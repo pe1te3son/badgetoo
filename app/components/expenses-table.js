@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import $ from 'jquery';
+import moment from 'npm:moment';
 
 export default Ember.Component.extend({
   userSettings: Ember.inject.service('user-settings'),
@@ -54,5 +55,29 @@ export default Ember.Component.extend({
     // Default values if search field empty
     return data;
   }.property('searchQuery', 'data.@each', 'tableViewSettings'),
+
+  setContentView (data) {
+    if (!data) { return; }
+
+    let dataToDisplay;
+    switch (this.get('tableViewSettings')) {
+      case 'today':
+        dataToDisplay = data.filter((item, index, enumerable) => {
+          let currentTimestamp = item.get('timestamp');
+          return moment(currentTimestamp).format('YYYY-MM-DD') === moment().format('YYYY-MM-DD');
+        });
+        break;
+
+      case 'week':
+        let oldestAllowed = moment().subtract(7, 'days').toDate().getTime();
+        dataToDisplay = data.filter((item, index, enumerable) => {
+          return item.get('timestamp') >= oldestAllowed;
+        });
+        break;
+
+      default:
+        dataToDisplay = data;
+    }
+    return dataToDisplay;
   }
 });
