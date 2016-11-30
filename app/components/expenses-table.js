@@ -12,6 +12,14 @@ export default Ember.Component.extend({
   actions: {
     sortByProperty (property) {
       this.sortValues(property);
+    },
+
+    tableViewSettings (settings) {
+      if (this.get('tableViewSettings') === settings) { return; }
+
+      $('.table-view-settings button').removeClass('mdl-button--raised');
+      $(`#btn-${settings}`).addClass('mdl-button--raised');
+      this.set('tableViewSettings', settings);
     }
   },
 
