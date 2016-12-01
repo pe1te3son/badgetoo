@@ -15,11 +15,9 @@ export default Ember.Route.extend({
   },
 
   model () {
-    return this.get('store').findAll('expense');
-    // return this.get('store').findAll('expense')
-    //   .then(response => response.filter(expense => {
-    //     console.log('dfa');
-    //     return moment(expense.get('timestamp')).isBetween('2016-11-05', '2016-11-29');
-    //   }));
+    return this.get('store').findRecord('expenses', moment().format('YYYY-MM'))
+      .then(data => {
+        return data.store.findAll('expense');
+      });
   }
 });
