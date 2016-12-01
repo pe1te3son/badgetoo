@@ -25,14 +25,14 @@
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <thead>
     <tr>
-      <th class="mdl-data-table__cell--non-numeric st--th_clicable" {{action "sortByProperty" "name"}} tabindex="0">Title</th>
-      <th class="mdl-data-table__cell--non-numeric st--th_clicable" {{action "sortByProperty" "category"}} tabindex="0">Category</th>
-      <th class="st--th_clicable" {{action "sortByProperty" "sum"}} tabindex="0">Cost</th>
+      <th class="mdl-data-table__cell--non-numeric st--th_clickable" {{action "sortByProperty" "name"}} tabindex="0">Title</th>
+      <th class="mdl-data-table__cell--non-numeric st--th_clickable" {{action "sortByProperty" "category"}} tabindex="0">Category</th>
+      <th class="st--th_clickable" {{action "sortByProperty" "sum"}} tabindex="0">Cost</th>
     </tr>
   </thead>
   <tbody>
     {{#each tableContent as |expense|}}
-      {{#expense-table-cell}}
+      {{#expense-table-cell tabindex="0" expenseId=expense.id action="tableCellClicked"}}
         <td class="mdl-data-table__cell--non-numeric">{{expense.name}}</td>
         <td class="mdl-data-table__cell--non-numeric">{{expense.category}}</td>
         <td>{{currency}}{{expense.sum}}</td>
