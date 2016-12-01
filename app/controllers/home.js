@@ -45,8 +45,10 @@ export default Ember.Controller.extend({
   }.property('sumByCategory'),
 
     saveRecord (record) {
-      let newExpense = this.store.createRecord('expense', record);
-      newExpense.save();
+      let expensesThisMonth = this.store.peekRecord('expenses', moment().format('YYYY-MM'));
+      let expense = this.store.createRecord('expense', record);
+      expensesThisMonth.get('expenses').pushObject(expense);
+      expense.save();
     }
   }
 });
