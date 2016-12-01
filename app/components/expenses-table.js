@@ -6,7 +6,8 @@ export default Ember.Component.extend({
   userSettings: Ember.inject.service('user-settings'),
   sortAscending: false,
   searchQuery: '',
-  tableViewSettings: 'all',
+  tableViewSettings: 'today',
+  sortByProperty: false,
 
   init () {
     this._super();
@@ -27,34 +28,43 @@ export default Ember.Component.extend({
     }
   },
 
-  sortValues (property) {
-    if (this.get('sortAscending')) {
-      const dataSorted = this.get('data').sortBy(property);
-      this.set('data', dataSorted);
+  applyPropertyFilter (data, property) {
+    if (property) {
+      this.set('sortAscending', !this.get('sortAscending'));
+      if (this.get('sortAscending')) {
+        return data.sortBy(property);
+      } else {
+        return data.sortBy(property).reverse();
+      }
     } else {
-      const dataSorted = this.get('data').sortBy(property).reverse();
-      this.set('data', dataSorted);
+      return data.sortBy('timestamp').reverse();
     }
-
-    this.set('sortAscending', !this.get('sortAscending'));
   },
 
   tableContent: function () {
-    let filter = this.get('searchQuery');
-    let data = this.setContentView(this.get('data'));
+    const filter = this.get('searchQuery');
+    const data = this.setContentView(this.get('data'));
+    const filterPropety = this.get('sortByProperty');
 
-    if (this.get('searchQuery').length) {
+    /*
+      Reset property filter each time content changes or is being filtered. It
+      ensures that latest item is always on top when another filter is being
+      applied or expense is added to db
+    */
+    this.set('sortByProperty', false);
+
+    // Filter by search field value if not empty
+    if (filter.length) {
       // Display data based on searchQuery
       let filteredContent = data.filter(function (item, index, enumerable) {
         return item.get('name').toLowerCase().match(filter.toLowerCase()) || item.get('category').toLowerCase().match(filter.toLowerCase());
       });
-      return filteredContent;
+      return this.applyPropertyFilter(filteredContent, filterPropety);
     }
 
     // Display latest on top
-    // Default values if search field empty
-    return data;
-  }.property('searchQuery', 'data.@each', 'tableViewSettings'),
+    return this.applyPropertyFilter(data, filterPropety);
+  }.property('searchQuery', 'data.@each', 'tableViewSettings', 'sortByProperty'),
 
   setContentView (data) {
     if (!data) { return; }
