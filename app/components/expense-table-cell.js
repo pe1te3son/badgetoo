@@ -1,18 +1,28 @@
 import Ember from 'ember';
+import $ from 'jquery';
 
 export default Ember.Component.extend({
   tagName: 'tr',
-  attributeBindings: ['tabindex'],
 
-  click () {
-    this.sendAction('action', this.get('expenseId'));
   willRender () {
     this.set('menuOptionID', `${this.get('elementId')}-options`);
   },
 
-  keyDown (event) {
-    if (event.which === 13) {
-      this.sendAction('action', this.get('expenseId'));
+  actions: {
+    openOptions (event) {
+      this.$().addClass('activated');
+      this.$().siblings('.activated').removeClass('activated');
+
+      $(window).one('click', () => {
+        $('.activated').removeClass('activated');
+      });
+
+      event.stopPropagation();
+      this.backgroundLock();
+      // this.sendAction('action', this.get('expenseId'));
+    }
+  },
+
   backgroundLock () {
     const backgroundActiveEl = document.activeElement;
     const optionsMenu = document.getElementById(this.get('menuOptionID'));
