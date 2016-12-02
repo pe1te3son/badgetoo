@@ -20,6 +20,32 @@ export default Ember.Component.extend({
       event.stopPropagation();
       this.backgroundLock();
       // this.sendAction('action', this.get('expenseId'));
+    },
+
+    edit (boolean) {
+      this.set('editMode', boolean);
+    },
+    update () {
+      const expense = this.get('expense');
+
+      this.sendAction('action', {
+        action: 'updateRecord',
+        payload: {
+          id: expense.get('id'),
+          name: expense.get('name'),
+          category: expense.get('category'),
+          sum: expense.get('sum')
+        }
+      });
+      this.set('editMode', false);
+    },
+    remove () {
+      this.sendAction('action', {
+        action: 'removeRecord',
+        payload: {
+          id: this.get('expense').id
+        }
+      });
     }
   },
 
