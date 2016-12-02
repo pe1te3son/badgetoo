@@ -6,6 +6,8 @@ export default Ember.Component.extend({
 
   click () {
     this.sendAction('action', this.get('expenseId'));
+  willRender () {
+    this.set('menuOptionID', `${this.get('elementId')}-options`);
   },
 
   keyDown (event) {
