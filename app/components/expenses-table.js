@@ -4,6 +4,7 @@ import moment from 'npm:moment';
 
 export default Ember.Component.extend({
   userSettings: Ember.inject.service('user-settings'),
+  store: Ember.inject.service(),
   sortAscending: false,
   searchQuery: '',
   tableViewSettings: 'today',
@@ -25,6 +26,27 @@ export default Ember.Component.extend({
       $('.table-view-settings button').removeClass('mdl-button--raised');
       $(`#btn-${settings}`).addClass('mdl-button--raised');
       this.set('tableViewSettings', settings);
+    },
+
+    cellAction (payload) {
+      this.send(payload.action, payload.payload);
+    },
+
+    updateRecord (payload) {
+      this.get('store').findRecord('expense', payload.id, { reload: true })
+        .then(record => {
+          record.set('name', payload.name);
+          record.set('category', payload.category);
+          record.set('sum', parseFloat(payload.sum).toFixed(2));
+          record.save();
+        });
+    },
+
+    removeRecord (payload) {
+      this.get('store').findRecord('expense', payload.id)
+        .then(record => {
+          record.destroyRecord();
+        });
     }
   },
 
