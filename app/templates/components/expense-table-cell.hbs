@@ -1,1 +1,20 @@
 {{yield}}
+
+<td class="options-cell-cont">
+  <button class="mdl-button mdl-js-button mdl-button--icon" onclick={{ action "openOptions"}}>
+    <i class="material-icons">more_vert</i>
+  </button>
+
+  <ul class="cell-options-menu st--list-unstyled mdl-shadow--2dp" id="{{menuOptionID}}">
+    <li class="cell-options-menu-item">
+      <button type="button" name="button">
+        Edit
+      </button>
+    </li>
+    <li class="cell-options-menu-item">
+      <button type="button" name="button">
+        Remove
+      </button>
+    </li>
+  </ul>
+</td>
