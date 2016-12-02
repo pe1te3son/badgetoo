@@ -1,20 +1,54 @@
-{{yield}}
+{{#if editMode}}
+  <td class="mdl-data-table__cell--non-numeric">
+    {{input value=expense.name}}
+  </td>
+  <td class="mdl-data-table__cell--non-numeric">
+    {{input value=expense.category}}
+  </td>
+  <td>
+    {{currency}}{{input value=expense.sum}}
+  </td>
 
-<td class="options-cell-cont">
-  <button class="mdl-button mdl-js-button mdl-button--icon" onclick={{ action "openOptions"}}>
-    <i class="material-icons">more_vert</i>
-  </button>
+  <td class="options-cell-cont">
+    <button class="mdl-button mdl-js-button mdl-button--icon" onclick={{ action "openOptions"}}>
+      <i class="material-icons">more_vert</i>
+    </button>
 
-  <ul class="cell-options-menu st--list-unstyled mdl-shadow--2dp" id="{{menuOptionID}}">
-    <li class="cell-options-menu-item">
-      <button type="button" name="button">
-        Edit
-      </button>
-    </li>
-    <li class="cell-options-menu-item">
-      <button type="button" name="button">
-        Remove
-      </button>
-    </li>
-  </ul>
-</td>
+    <ul class="cell-options-menu st--list-unstyled mdl-shadow--2dp" id="{{menuOptionID}}">
+      <li class="cell-options-menu-item">
+        <button type="button" name="button" {{action "update"}}>
+          Save
+        </button>
+      </li>
+      <li class="cell-options-menu-item">
+        <button type="button" name="button" {{action "edit" false}}>
+          Cancel
+        </button>
+      </li>
+    </ul>
+  </td>
+
+{{else}}
+  <td class="mdl-data-table__cell--non-numeric">{{expense.name}}</td>
+  <td class="mdl-data-table__cell--non-numeric">{{expense.category}}</td>
+  <td>{{currency}}{{expense.sum}}</td>
+
+  <td class="options-cell-cont">
+    <button class="mdl-button mdl-js-button mdl-button--icon" onclick={{ action "openOptions"}}>
+      <i class="material-icons">more_vert</i>
+    </button>
+
+    <ul class="cell-options-menu st--list-unstyled mdl-shadow--2dp" id="{{menuOptionID}}">
+      <li class="cell-options-menu-item">
+        <button type="button" name="button" {{action "edit" true}}>
+          Edit
+        </button>
+      </li>
+      <li class="cell-options-menu-item">
+        <button type="button" name="button" {{action "remove"}}>
+          Remove
+        </button>
+      </li>
+    </ul>
+  </td>
+{{/if}}
