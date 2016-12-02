@@ -1,4 +1,5 @@
 <div class="table-settings">
+
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable st--float-left">
      <label class="mdl-button mdl-js-button mdl-button--icon" for="search-query">
        <i class="material-icons">search</i>
@@ -28,11 +29,12 @@
       <th class="mdl-data-table__cell--non-numeric st--th_clickable" {{action "sortByProperty" "name"}} tabindex="0">Title</th>
       <th class="mdl-data-table__cell--non-numeric st--th_clickable" {{action "sortByProperty" "category"}} tabindex="0">Category</th>
       <th class="st--th_clickable" {{action "sortByProperty" "sum"}} tabindex="0">Cost</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     {{#each tableContent as |expense|}}
-      {{#expense-table-cell tabindex="0" expenseId=expense.id action="tableCellClicked"}}
+      {{#expense-table-cell expenseId=expense.id class="expense-table-cell"}}
         <td class="mdl-data-table__cell--non-numeric">{{expense.name}}</td>
         <td class="mdl-data-table__cell--non-numeric">{{expense.category}}</td>
         <td>{{currency}}{{expense.sum}}</td>
