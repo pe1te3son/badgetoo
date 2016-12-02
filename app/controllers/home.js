@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import $ from 'jquery';
+import moment from 'npm:moment';
 
 export default Ember.Controller.extend({
   spendingsMeter: 0.00,
@@ -43,6 +44,19 @@ export default Ember.Controller.extend({
     });
     return data;
   }.property('sumByCategory'),
+
+  actions: {
+    test () {
+      const _this = this;
+      $('#trains-date-picker').pickadate({
+        min: () => {
+          return new Date();
+        },
+        onSet: function (date) {
+          _this.set('datepickerValue', date.select);
+        }
+      });
+    },
 
     saveRecord (record) {
       let expensesThisMonth = this.store.peekRecord('expenses', moment().format('YYYY-MM'));
