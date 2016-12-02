@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
 
   watchAddSpending: function () {
     this.updateSpendingsMeter();
-  }.observes('model.@each'),
+  }.observes('model.@each.sum'),
 
   updateSpendingsMeter () {
     let sumCounted = 0;
