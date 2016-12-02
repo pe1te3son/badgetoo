@@ -34,11 +34,12 @@
   </thead>
   <tbody>
     {{#each tableContent as |expense|}}
-      {{#expense-table-cell expenseId=expense.id class="expense-table-cell"}}
-        <td class="mdl-data-table__cell--non-numeric">{{expense.name}}</td>
-        <td class="mdl-data-table__cell--non-numeric">{{expense.category}}</td>
-        <td>{{currency}}{{expense.sum}}</td>
-      {{/expense-table-cell}}
+      {{expense-table-cell
+        action="cellAction"
+        currency=currency
+        expense=expense
+        class="expense-table-cell"
+      }}
     {{/each}}
   </tbody>
 </table>
