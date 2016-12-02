@@ -16,7 +16,7 @@ export default Ember.Component.extend({
 
   actions: {
     sortByProperty (property) {
-      this.sortValues(property);
+      this.set('sortByProperty', property);
     },
 
     tableViewSettings (settings) {
