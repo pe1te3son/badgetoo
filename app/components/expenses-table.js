@@ -78,7 +78,7 @@ export default Ember.Component.extend({
     // Filter by search field value if not empty
     if (filter.length) {
       // Display data based on searchQuery
-      let filteredContent = data.filter(function (item, index, enumerable) {
+      let filteredContent = data.filter(function (item) {
         return item.get('name').toLowerCase().match(filter.toLowerCase()) || item.get('category').toLowerCase().match(filter.toLowerCase());
       });
       return this.applyPropertyFilter(filteredContent, filterPropety);
@@ -94,7 +94,7 @@ export default Ember.Component.extend({
     let dataToDisplay;
     switch (this.get('tableViewSettings')) {
       case 'today':
-        dataToDisplay = data.filter((item, index, enumerable) => {
+        dataToDisplay = data.filter((item) => {
           let currentTimestamp = item.get('timestamp');
           return moment(currentTimestamp).format('YYYY-MM-DD') === moment().format('YYYY-MM-DD');
         });
@@ -102,7 +102,7 @@ export default Ember.Component.extend({
 
       case 'week':
         let oldestAllowed = moment().subtract(7, 'days').toDate().getTime();
-        dataToDisplay = data.filter((item, index, enumerable) => {
+        dataToDisplay = data.filter((item) => {
           return item.get('timestamp') >= oldestAllowed;
         });
         break;
