@@ -21,22 +21,34 @@ export default Ember.Component.extend({
 
       event.stopPropagation();
       this.backgroundLock();
-      // this.sendAction('action', this.get('expenseId'));
     },
 
     edit (boolean) {
       this.set('editMode', boolean);
+
+      // Exit if false
+      if (!boolean) { return; }
+      const expense = this.get('expense');
+
+      this.set('editModeValues', {
+        sum: expense.get('sum'),
+        category: expense.get('category'),
+        name: expense.get('name')
+      });
+      Ember.run.later(() => {
+        componentHandler.upgradeAllRegistered();
+      }, 100);
     },
     update () {
-      const expense = this.get('expense');
+      const editModeValues = this.get('editModeValues');
 
       this.sendAction('action', {
         action: 'updateRecord',
         payload: {
-          id: expense.get('id'),
-          name: expense.get('name'),
-          category: expense.get('category'),
-          sum: expense.get('sum')
+          id: this.get('expense').id,
+          name: editModeValues.name,
+          category: editModeValues.category,
+          sum: parseFloat(editModeValues.sum).toFixed(2)
         }
       });
       this.set('editMode', false);
