@@ -42,6 +42,8 @@ export default Ember.Component.extend({
     update () {
       const editModeValues = this.get('editModeValues');
 
+      // If has error exit
+      if (this.$().find('.is-invalid').length) { return; }
       this.sendAction('action', {
         action: 'updateRecord',
         payload: {
