@@ -4,8 +4,12 @@ import $ from 'jquery';
 export default Ember.Component.extend({
   tagName: 'tr',
 
+  errorMessages: {
+    emRequired: 'This field can\'t be blank',
+    emPattern: 'Must be a number!'
   },
 
+  editModeValues: {},
   actions: {
     openOptions (event) {
       this.$().addClass('activated');

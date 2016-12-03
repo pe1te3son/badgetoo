@@ -1,12 +1,22 @@
 {{#if editMode}}
   <td class="mdl-data-table__cell--non-numeric">
-    {{input value=expense.name}}
+    {{#validate-input class="mdl-textfield mdl-js-textfield edit-mode" validate=editModeValues.name messages=errorMessages}}
+      {{input class="mdl-textfield__input" type="text" id=(concat elementId "-edit_name") value=editModeValues.name em-required="required"}}
+      <label class="mdl-textfield__label" for="{{elementId}}-edit_name">Title</label>
+    {{/validate-input}}
   </td>
   <td class="mdl-data-table__cell--non-numeric">
-    {{input value=expense.category}}
+    {{#validate-input class="mdl-textfield mdl-js-textfield edit-mode" validate=editModeValues.category messages=errorMessages}}
+      {{input class="mdl-textfield__input" type="text" id=(concat elementId "-edit_category") value=editModeValues.category em-required="required"}}
+      <label class="mdl-textfield__label" for="{{elementId}}-edit_category">Category</label>
+    {{/validate-input}}
   </td>
   <td>
-    {{currency}}{{input value=expense.sum}}
+    {{#validate-input class="mdl-textfield mdl-js-textfield edit-mode" validate=editModeValues.sum messages=errorMessages}}
+      <span class="expense-currency">{{currency}}</span>
+      {{input class="mdl-textfield__input" type="text" id=(concat elementId "-edit_sum") value=editModeValues.sum em-required="required" em-pattern="^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$"}}
+      <label class="mdl-textfield__label" for="{{elementId}}-edit_sum">Sum</label>
+    {{/validate-input}}
   </td>
 
   <td class="options-cell-cont">
