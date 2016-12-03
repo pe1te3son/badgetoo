@@ -29,7 +29,11 @@
       <th class="mdl-data-table__cell--non-numeric st--th_clickable" {{action "sortByProperty" "name"}} tabindex="0">Title</th>
       <th class="mdl-data-table__cell--non-numeric st--th_clickable" {{action "sortByProperty" "category"}} tabindex="0">Category</th>
       <th class="st--th_clickable" {{action "sortByProperty" "sum"}} tabindex="0">Cost</th>
-      <th></th>
+      <th>
+        {{#if tableContent.length}}
+          #:&nbsp;{{tableContent.length}}
+        {{/if}}
+      </th>
     </tr>
   </thead>
   <tbody>
