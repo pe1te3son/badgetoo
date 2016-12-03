@@ -5,7 +5,10 @@ export default Ember.Component.extend({
 
   chartOptions: {
     title: 'Spendings by category',
-    backgroundColor: '#f5f5f5'
+    backgroundColor: '#f5f5f5',
+    legend: {
+      position: 'right'
+    }
   },
 
   didInsertElement () {
@@ -66,6 +69,14 @@ export default Ember.Component.extend({
 
     if (elWidth > 300) {
       this.set('chartOptions.width', elWidth);
+    } else {
+      this.set('chartOptions.width', 300);
+    }
+
+    if ($(window).width() > 500) {
+      this.set('chartOptions.legend', 'right');
+    } else {
+      this.set('chartOptions.legend', 'bottom');
     }
   }
 
