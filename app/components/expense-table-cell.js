@@ -4,8 +4,6 @@ import $ from 'jquery';
 export default Ember.Component.extend({
   tagName: 'tr',
 
-  willRender () {
-    this.set('menuOptionID', `${this.get('elementId')}-options`);
   },
 
   actions: {
