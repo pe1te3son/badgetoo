@@ -59,7 +59,15 @@ export default Ember.Controller.extend({
     },
 
     saveRecord (record) {
-      let expensesThisMonth = this.store.peekRecord('expenses', moment().format('YYYY-MM'));
+      const currentDateId = moment().format('YYYY-MM');
+
+      if (this.store.peekRecord('expenses', currentDateId) === null) {
+        let expensesStore = this.store.createRecord('expenses', {
+          id: currentDateId
+        });
+        expensesStore.save();
+      }
+      let expensesThisMonth = this.store.peekRecord('expenses', currentDateId);
       let expense = this.store.createRecord('expense', record);
       expensesThisMonth.get('expenses').pushObject(expense);
       expense.save();
