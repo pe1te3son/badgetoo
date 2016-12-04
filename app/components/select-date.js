@@ -5,12 +5,12 @@ export default Ember.Component.extend({
 
   init () {
     this._super();
-    let periods = this.get('userSettings').timePeriods();
+    this.get('userSettings').timePeriods().then(response => {
+      // Sort by latest on top
+      this.set('timePeriods', response.sortBy('begins').reverse());
 
-    // Sort by latest on top
-    this.set('timePeriods', periods.sortBy('begins').reverse());
-
-    // Create array of years
-    this.set('years', periods.uniqBy('year'));
+      // Create array of years
+      this.set('years', response.uniqBy('year'));
+    });
   }
 });

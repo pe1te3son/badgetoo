@@ -13,16 +13,20 @@ export default Ember.Service.extend({
   },
 
   timePeriods () {
-    let storedValues = this.get('store').peekAll('expenses');
+    return this.get('store').findAll('expenses').then(response => {
+      let timePeriods = [];
+      response.forEach(value => {
+        let begins = moment(`${value.get('id')}-${this.monthBegins()}`, 'YYYY-MM-DD').toDate().getTime();
+        let ends = moment(begins).add(1, 'months').subtract(1, 'seconds').toDate().getTime();
+        let year = moment(begins).format('YYYY');
 
-    let timePeriods = [];
-    storedValues.forEach(value => {
-      let begins = moment(`${value.get('id')}-${this.monthBegins()}`, 'YYYY-MM-DD').toDate().getTime();
-      let ends = moment(begins).add(1, 'months').subtract(1, 'seconds').toDate().getTime();
-      let year = moment(begins).format('YYYY');
-      timePeriods.pushObject({begins, ends, year});
+        if (moment(begins).isBefore(moment())) {
+          timePeriods.pushObject({begins, ends, year});
+        }
+      });
+
+      return timePeriods;
     });
-
-    return timePeriods;
   }
+
 });
