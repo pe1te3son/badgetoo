@@ -9,6 +9,13 @@ export default Ember.Controller.extend({
   watchAddSpending: function () {
     this.updateSpendingsMeter();
   }.observes('model.@each.sum'),
+  init () {
+    this.set('currentMonthDisplaying', {
+      month: 12,
+      year: 2016,
+      isInPast: false
+    });
+  },
 
   updateSpendingsMeter () {
     let sumCounted = 0;
