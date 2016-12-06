@@ -1,14 +1,9 @@
 import Ember from 'ember';
-import $ from 'jquery';
-import moment from 'npm:moment';
 
 export default Ember.Controller.extend({
   spendingsMeter: 0.00,
   sumByCategory: null,
 
-  watchAddSpending: function () {
-    this.updateSpendingsMeter();
-  }.observes('model.@each.sum'),
   init () {
     this.set('currentMonthDisplaying', {
       month: 12,
@@ -17,10 +12,43 @@ export default Ember.Controller.extend({
     });
   },
 
-  updateSpendingsMeter () {
+  dataToDisplay: function () {
+    let month = this.get('currentMonthDisplaying').month;
+    let year = this.get('currentMonthDisplaying').year;
+    let timePeriodsList = [];
+
+    // Filter expenses for current month and generate timePeriodsList while you at it.
+    let filteredData = this.get('model').filter(item => {
+      // Save values to be reused
+      let timePeriod = [item.get('year'), item.get('month')];
+
+      // Determine if timeperiod is alredy on the list
+      let notOnList = timePeriodsList.every(arr => {
+        if (arr[0] !== timePeriod[0]) {
+          return true;
+        } else {
+          // if arr[0] === timePeriod[0]
+          return arr[1] !== timePeriod[1];
+        }
+      });
+
+      // Save if not on list
+      if (notOnList) {
+        timePeriodsList.push(timePeriod);
+      }
+
+      // Returns false if expense is not for current month
+      return timePeriod[0] === year && timePeriod[1] === month;
+    });
+
+    this.set('timePeriodsList', timePeriodsList);
+    return filteredData;
+  }.property('model.@each'),
+
+  updateSpendingsMeter: function (data) {
     let sumCounted = 0;
     let sumByCategory = [];
-    this.get('model').forEach(item => {
+    this.get('dataToDisplay').forEach(item => {
       let sum = item.get('sum');
       let category = item.get('category');
 
@@ -37,7 +65,7 @@ export default Ember.Controller.extend({
     this.set('spendingsMeter', sumCounted);
     this.set('sumByCategory', sumByCategory);
     return;
-  },
+  }.observes('model.@each.sum'),
 
   formatedChartData: function () {
     const data = [
