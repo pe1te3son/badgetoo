@@ -81,30 +81,17 @@ export default Ember.Controller.extend({
   }.property('sumByCategory'),
 
   actions: {
-    test () {
-      const _this = this;
-      $('#trains-date-picker').pickadate({
-        min: () => {
-          return new Date();
-        },
-        onSet: function (date) {
-          _this.set('datepickerValue', date.select);
-        }
-      });
-    },
-
     saveRecord (record) {
-      const currentDateId = moment().format('YYYY-MM');
+      let setTimePeriodRecord = record;
 
-      if (this.store.peekRecord('expenses', currentDateId) === null) {
-        let expensesStore = this.store.createRecord('expenses', {
-          id: currentDateId
-        });
-        expensesStore.save();
+      // If timeperiod is in past it will set correct month and year for expense on save
+      // otherwise default value is set in model
+      if (this.get('currentMonthDisplaying').isInPast) {
+        setTimePeriodRecord.month = this.get('currentMonthDisplaying').month;
+        setTimePeriodRecord.year = this.get('currentMonthDisplaying').year;
       }
-      let expensesThisMonth = this.store.peekRecord('expenses', currentDateId);
-      let expense = this.store.createRecord('expense', record);
-      expensesThisMonth.get('expenses').pushObject(expense);
+
+      let expense = this.store.createRecord('expense', setTimePeriodRecord);
       expense.save();
     }
   }
