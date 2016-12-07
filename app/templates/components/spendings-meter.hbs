@@ -6,7 +6,16 @@
   </div>
 
   <div class="today-date-display">
-    <span>{{todaysDate.dayName}}</span>
-    <em>{{todaysDate.date}}</em>
+    {{#if isInPast}}
+      <div class="isInPast-warning mdl-shadow--2dp">
+        <p>
+          <strong>Previous time period selected!</strong>
+          <small>All new expenses will be saved into the selected time period.</small>
+        </p>
+      </div>
+    {{else}}
+      <span>{{todaysDate.dayName}}</span>
+      <em>{{todaysDate.date}}</em>
+    {{/if}}
   </div>
 </div>
