@@ -18,11 +18,11 @@ export default Ember.Component.extend({
     this.set('timePeriodChanged', timePeriodChanged);
   },
 
-  init () {
-    this._super();
-    this.get('userSettings').timePeriods().then(response => {
-      // Sort by latest on top
-      this.set('timePeriods', response.sortBy('begins').reverse());
+  didInsertElement () {
+    this.$().find(`option[value=${this.get('currentDate').year}]`).attr('selected', 'selected');
+    this.$().find(`option[value=${this.get('currentDate').month}]`).attr('selected', 'selected');
+    componentHandler.upgradeAllRegistered();
+  },
 
       // Create array of years
       this.set('years', response.uniqBy('year'));
