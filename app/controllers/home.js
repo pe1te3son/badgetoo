@@ -81,6 +81,12 @@ export default Ember.Controller.extend({
   }.property('sumByCategory'),
 
   actions: {
+
+    timePeriodHasChanged (timePeriod) {
+      this.set('currentMonthDisplaying', timePeriod);
+      this.set('model', this.store.findAll('expense'));
+    },
+
     saveRecord (record) {
       let setTimePeriodRecord = record;
 
