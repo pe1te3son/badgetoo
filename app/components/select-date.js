@@ -36,6 +36,21 @@ export default Ember.Component.extend({
     return years;
   }.property('timePeriods'),
 
+  // Only show months for year selected
+  uniqMonths: null,
+  setUniqMonths () {
+    let currentYear = this.get('timePeriodChanged').year;
+
+    let months = [];
+    this.get('timePeriods').forEach(timeperiod => {
+      if (timeperiod[0] === parseInt(currentYear) && months.indexOf(timeperiod[1]) === -1) {
+        months.push(timeperiod[1]);
+      }
+    });
+    this.set('uniqMonths', months);
+    return;
+  },
+
   actions: {
     monthSelected (value) {
       this.timePeriodBtn(true);
@@ -45,6 +60,7 @@ export default Ember.Component.extend({
     yearSelected (value) {
       this.timePeriodBtn(true);
       this.set('timePeriodChanged.year', parseInt(value));
+      this.setUniqMonths();
     },
 
     changeTimePeriod () {
