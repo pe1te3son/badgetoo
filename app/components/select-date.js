@@ -15,5 +15,11 @@ export default Ember.Component.extend({
       // Create array of years
       this.set('years', response.uniqBy('year'));
     });
+
+  timePeriodBtn (boolean) {
+    // Run only if value differs
+    if (this.get('btnActive') !== boolean) {
+      this.set('btnActive', boolean);
+    }
   }
 });

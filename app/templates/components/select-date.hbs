@@ -18,7 +18,9 @@
 </div>
 
 <div class="select-date-button">
-  <button class="mdl-button mdl-js-button mdl-button--primary" disabled>
-    ok
-  </button>
+  {{#if btnActive}}
+    <button class="mdl-button mdl-js-button mdl-button--primary" id="time-period-change-btn" {{action "changeTimePeriod"}}>ok</button>
+  {{else}}
+    <button class="mdl-button mdl-js-button mdl-button--primary" id="time-period-change-btn" disabled>ok</button>
+  {{/if}}
 </div>
