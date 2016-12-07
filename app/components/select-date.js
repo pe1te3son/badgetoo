@@ -24,9 +24,18 @@ export default Ember.Component.extend({
     componentHandler.upgradeAllRegistered();
   },
 
-      // Create array of years
-      this.set('years', response.uniqBy('year'));
+  uniqYears: function () {
+    let years = [];
+      // Filter out duplicates
+    this.get('timePeriods').forEach(timeperiod => {
+      if (years.indexOf(timeperiod[0]) === -1) {
+        years.push(timeperiod[0]);
+      }
     });
+    this.setUniqMonths();
+    return years;
+  }.property('timePeriods'),
+
   actions: {
     monthSelected (value) {
       this.timePeriodBtn(true);
