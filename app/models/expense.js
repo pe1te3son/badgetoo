@@ -2,7 +2,6 @@ import DS from 'ember-data';
 import moment from 'npm:moment';
 
 export default DS.Model.extend({
-  expenses: DS.belongsTo('expenses'),
   timestamp: DS.attr('number', {
     defaultValue () { return moment(/*'2016-11-24', 'YYYY-MM-DD'*/).toDate().getTime(); }
   }),
