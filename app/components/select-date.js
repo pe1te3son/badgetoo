@@ -1,7 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  userSettings: Ember.inject.service(),
+  btnActive: false,
+  didReceiveAttrs () {
+    this.set('timePeriodChanged', this.get('currentDate'));
+  },
 
   init () {
     this._super();
