@@ -4,7 +4,18 @@ import moment from 'npm:moment';
 export default Ember.Component.extend({
   btnActive: false,
   didReceiveAttrs () {
-    this.set('timePeriodChanged', this.get('currentDate'));
+    let timePeriodChanged = {
+      year: this.get('currentDate').year,
+      month: this.get('currentDate').month
+    };
+
+    if (!this.get('timePeriods').length) {
+      this.get('timePeriods').push([
+        moment().format('YYYY'),
+        moment().format('MM')
+      ]);
+    }
+    this.set('timePeriodChanged', timePeriodChanged);
   },
 
   init () {
