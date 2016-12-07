@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'npm:moment';
 
 export default Ember.Component.extend({
   btnActive: false,
@@ -15,6 +16,17 @@ export default Ember.Component.extend({
       // Create array of years
       this.set('years', response.uniqBy('year'));
     });
+  actions: {
+    monthSelected (value) {
+      this.timePeriodBtn(true);
+      this.set('timePeriodChanged.month', parseInt(value));
+    },
+
+    yearSelected (value) {
+      this.timePeriodBtn(true);
+      this.set('timePeriodChanged.year', parseInt(value));
+    },
+
     changeTimePeriod () {
       this.timePeriodBtn(false);
       const timePeriod = this.get('timePeriodChanged');
