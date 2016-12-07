@@ -5,7 +5,7 @@
     <div class="mdl-card mdl-card--bg-color text-right mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet" id="spending-meter-cont">
 
 
-      {{select-date class="mdl-cell mdl-cell--12-col select-date-cont" timePeriods=timePeriodsList}}
+      {{select-date class="mdl-cell mdl-cell--12-col select-date-cont" timePeriods=timePeriodsList currentDate=currentMonthDisplaying action="timePeriodHasChanged"}}
 
       {{spendings-meter data=spendingsMeter class="mdl-cell mdl-cell--12-col"}}
 

@@ -15,6 +15,18 @@ export default Ember.Component.extend({
       // Create array of years
       this.set('years', response.uniqBy('year'));
     });
+    changeTimePeriod () {
+      this.timePeriodBtn(false);
+      const timePeriod = this.get('timePeriodChanged');
+
+      if (moment(`${timePeriod.year}-${timePeriod.month}`, 'YYYY-MM').isSame(moment().format('YYYY-MM'))) {
+        timePeriod.isInPast = false;
+      } else {
+        timePeriod.isInPast = true;
+      }
+      this.sendAction('action', timePeriod);
+    }
+  },
 
   timePeriodBtn (boolean) {
     // Run only if value differs
