@@ -14,8 +14,8 @@ export default Ember.Component.extend({
     // Only activates if there is no record for current time period
     if (!this.get('timePeriods').length) {
       this.get('timePeriods').push([
-        moment().format('YYYY'),
-        moment().format('MM')
+        parseInt(moment().format('YYYY')),
+        parseInt(moment().format('MM'))
       ]);
     }
     this.set('timePeriodChanged', timePeriodChanged);
