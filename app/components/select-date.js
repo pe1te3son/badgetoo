@@ -4,11 +4,14 @@ import moment from 'npm:moment';
 export default Ember.Component.extend({
   btnActive: false,
   didReceiveAttrs () {
+    // Save current month and year to variable to prevent unnecessary bubbling when changed
     let timePeriodChanged = {
       year: this.get('currentDate').year,
       month: this.get('currentDate').month
     };
 
+    // If empty array create initial time period
+    // Only activates if there is no record for current time period
     if (!this.get('timePeriods').length) {
       this.get('timePeriods').push([
         moment().format('YYYY'),
@@ -19,6 +22,7 @@ export default Ember.Component.extend({
   },
 
   didInsertElement () {
+    // Make sure that current year and month are selected
     this.$().find(`option[value=${this.get('currentDate').year}]`).attr('selected', 'selected');
     this.$().find(`option[value=${this.get('currentDate').month}]`).attr('selected', 'selected');
     componentHandler.upgradeAllRegistered();
@@ -63,6 +67,7 @@ export default Ember.Component.extend({
       this.setUniqMonths();
     },
 
+    // Notify parent that time period has been changed
     changeTimePeriod () {
       this.timePeriodBtn(false);
       const timePeriod = this.get('timePeriodChanged');
@@ -76,6 +81,7 @@ export default Ember.Component.extend({
     }
   },
 
+  // Disable / enable buttons based on passsing boolean
   timePeriodBtn (boolean) {
     // Run only if value differs
     if (this.get('btnActive') !== boolean) {
