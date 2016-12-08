@@ -1,0 +1,13 @@
+{{log setting}}
+<span class="settings-name">{{setting.setting}}:</span>
+{{#if editMode}}
+  {{input value=setting.value class="settings-input"}}
+  <button class="mdl-button mdl-js-button mdl-button--primary settings-edit-btn" {{action "updateSetting"}}>
+    ok
+  </button>
+{{else}}
+  <span class="settings-value">{{setting.value}}</span>
+  <button class="mdl-button mdl-js-button mdl-button--primary settings-edit-btn" {{action "editMode" true}}>
+    edit
+  </button>
+{{/if}}
