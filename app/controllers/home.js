@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'npm:moment';
 
 export default Ember.Controller.extend({
   spendingsMeter: 0.00,
@@ -6,8 +7,8 @@ export default Ember.Controller.extend({
 
   init () {
     this.set('currentMonthDisplaying', {
-      month: 12,
-      year: 2016,
+      month: parseInt(moment().format('MM')),
+      year: parseInt(moment().format('YYYY')),
       isInPast: false
     });
   },
