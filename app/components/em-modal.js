@@ -45,8 +45,9 @@ export default Ember.Component.extend({
     el.keydown(event => {
       // If Esc pressed
       if (event.keyCode === 27) {
+        backgroundActiveEl.focus();
         el.fadeOut(100);
-        return backgroundActiveEl.focus();
+        return;
       }
 
       // Trap Tab key while modal open
