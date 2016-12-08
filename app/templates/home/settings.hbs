@@ -7,33 +7,17 @@
     <p>Change your settings</p>
     <ul class="st--list-unstyled user-settings">
 
-      <li class="settings-item">
-        <span class="settings-name">Your Name:</span>
-        {{#if editMode}}
-          {{input value=userName.value}}
-        {{else}}
-          <span class="settings-value">{{userName.value}}</span>
-        {{/if}}
-      </li>
-      <li class="settings-item">
-        <span class="settings-name">Currency:</span>
-        {{#if editMode}}
-          {{input value=currency.value}}
-        {{else}}
-          <span class="settings-value">{{currency.value}}</span>
-        {{/if}}
-      </li>
+      {{user-setting setting=userName class="settings-item"}}
+
+      {{user-setting setting=currency class="settings-item"}}
+
     </ul>
 
   </div>
   <div class="mdl-card__actions mdl-card--border text-right">
-    {{#if editMode}}
-      <button class="mdl-button mdl-button--colored mdl-js-button" {{action "editMode" false}}>Reset</button>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" {{action "updateSettings"}}>save</button>
-    {{else}}
-      <button class="mdl-button mdl-button--colored mdl-js-button" {{action "editMode" true}}>edit</button>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" disabled>save</button>
-    {{/if}}
+    {{#link-to 'home' class="mdl-button mdl-button--colored mdl-js-button" id="close-settings-btn"}}
+      close
+    {{/link-to}}
   </div>
 </div>
 </section>
