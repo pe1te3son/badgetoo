@@ -36,7 +36,8 @@ export default Ember.Component.extend({
 
   init () {
     this._super();
-    this.set('currency', this.get('userSettings').currency());
+    this.get('userSettings').currency()
+      .then(response => this.set('currency', response));
   },
 
   didInsertElement () {
