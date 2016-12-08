@@ -1,38 +1,39 @@
 <section class="settings-section">
-  <div class="settings-card mdl-shadow--6dp mdl-grid mdl-dialog">
-    <div class="mdl-dialog__content settings-content mdl-cell mdl-cell--12-col">
-      <div class="settings-user-info">
-        <div class="settings-user-avatar">
-          <i class="material-icons">person</i>
-        </div>
-        <div class="settings-user-name">
-          <span class="mdl-chip">
-            <span class="mdl-chip__text">Peter</span>
-          </span>
-        </div>
-      </div>
-
-      <ul class="settings-cont st--list-unstyled">
-        <li class="settings-item">
-          <span class="st--chip">
-            <span class="st--chip-text">Currency</span>
-            <span class="st--chip-value">£</span>
-            {{!-- <input type="text" name="name" value="£"> --}}
-            <i class="material-icons st--chip-edit">create</i>
-          </span>
-        </li>
-        <li class="settings-item">
-          <span class="st--chip">
-            <span class="st--chip-text">Month begins</span>
-            <span class="st--chip-value">5th</span>
-            <i class="material-icons st--chip-edit">create</i>
-          </span>
-        </li>
-      </ul>
-    </div>
-    <div class="mdl-dialog__actions mdl-cell mdl-cell--12-col">
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Save</button>
-      {{!-- <button type="button" class="mdl-button mdl-js-button mdl-button--primary">Edit</button> --}}
-    </div>
+  <div class="settings-card mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title mdl-card--expand">
+    <h2 class="mdl-card__title-text">Settings</h2>
   </div>
+  <div class="mdl-card__supporting-text">
+    <p>Change your settings</p>
+    <ul class="st--list-unstyled user-settings">
+
+      <li class="settings-item">
+        <span class="settings-name">Your Name:</span>
+        {{#if editMode}}
+          {{input value=userName.value}}
+        {{else}}
+          <span class="settings-value">{{userName.value}}</span>
+        {{/if}}
+      </li>
+      <li class="settings-item">
+        <span class="settings-name">Currency:</span>
+        {{#if editMode}}
+          {{input value=currency.value}}
+        {{else}}
+          <span class="settings-value">{{currency.value}}</span>
+        {{/if}}
+      </li>
+    </ul>
+
+  </div>
+  <div class="mdl-card__actions mdl-card--border text-right">
+    {{#if editMode}}
+      <button class="mdl-button mdl-button--colored mdl-js-button" {{action "editMode" false}}>Reset</button>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" {{action "updateSettings"}}>save</button>
+    {{else}}
+      <button class="mdl-button mdl-button--colored mdl-js-button" {{action "editMode" true}}>edit</button>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" disabled>save</button>
+    {{/if}}
+  </div>
+</div>
 </section>
