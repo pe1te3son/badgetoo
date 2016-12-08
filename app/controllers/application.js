@@ -12,5 +12,11 @@ export default Ember.Controller.extend({
         $(this).toggleClass('settings-active');
       });
     });
-  }
+  },
+
+  areSettingsActive: function () {
+    // Change settins icon and link based on current path
+    return this.get('currentRouteName') === 'home.settings';
+  }.property('currentRouteName')
+
 });
