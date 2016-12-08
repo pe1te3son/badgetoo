@@ -1,18 +1,18 @@
 
-<div class="mdl-textfield mdl-js-textfield select-date-item">
-  <label class="mdl-textfield__label sr-only" for="select-year">Year</label>
-  <select class="mdl-textfield__input" type="text" id="select-year">
-    {{#each years as |year|}}
-      <option value={{year.year}}>{{year.year}}</option>
+<div class="mdl-textfield mdl-js-textfield select-date-item mdl-textfield--floating-label">
+  <label class="mdl-textfield__label" for="select-year">Year</label>
+  <select class="mdl-textfield__input" type="text" id="select-year" onchange={{ action "yearSelected" value="target.value"}}>
+    {{#each uniqYears as |year|}}
+      <option value={{year}}>{{year}}</option>
     {{/each}}
   </select>
 </div>
 
-<div class="mdl-textfield mdl-js-textfield select-date-item">
-  <label class="mdl-textfield__label sr-only" for="select-month">Month</label>
-  <select class="mdl-textfield__input" type="text" id="select-month">
-    {{#each timePeriods as |period|}}
-      <option value={{period.begins}}>{{beatify-time-period period}}</option>
+<div class="mdl-textfield mdl-js-textfield select-date-item mdl-textfield--floating-label">
+  <label class="mdl-textfield__label" for="select-month">Month</label>
+  <select class="mdl-textfield__input" type="text" id="select-month" onchange={{ action "monthSelected" value="target.value"}}>
+    {{#each uniqMonths as |month|}}
+      <option value={{month}}>{{beatify-time-period month}}</option>
     {{/each}}
   </select>
 </div>
