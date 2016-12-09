@@ -1,9 +1,10 @@
-<section class="settings-section">
-  <div class="settings-card mdl-card mdl-shadow--2dp">
+<section class="settings-section" id="user-settings-cont">
+  <div class="settings-card mdl-shadow--2dp">
   <div class="mdl-card__title mdl-card--expand">
     <h2 class="mdl-card__title-text">Settings</h2>
   </div>
-  <div class="mdl-card__supporting-text">
+
+  {{#user-settings-wrapper class="mdl-card__supporting-text" action="closeSettings"}}
     <p>Change your settings</p>
     <ul class="st--list-unstyled user-settings">
 
@@ -12,8 +13,8 @@
       {{user-setting setting=currency class="settings-item" action="updateSetting"}}
 
     </ul>
+  {{/user-settings-wrapper}}
 
-  </div>
   <div class="mdl-card__actions mdl-card--border text-right">
     {{#link-to 'home' class="mdl-button mdl-button--colored mdl-js-button" id="close-settings-btn"}}
       close
