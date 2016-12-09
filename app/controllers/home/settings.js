@@ -55,6 +55,10 @@ export default Ember.Controller.extend({
   }.property('model'),
 
   actions: {
+    closeSettings () {
+      this.transitionToRoute('home');
+    },
+
     updateSetting (obj) {
       let payload = obj;
 
