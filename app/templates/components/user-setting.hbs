@@ -1,10 +1,20 @@
-{{log setting}}
 <span class="settings-name">{{setting.setting}}:</span>
 {{#if editMode}}
-  {{input value=setting.value class="settings-input"}}
-  <button class="mdl-button mdl-js-button mdl-button--primary settings-edit-btn" {{action "updateSetting"}}>
-    ok
-  </button>
+
+  <div class="settings-input {{if setting.value.length 'outline-default'}}">
+    {{input value=setting.value}}
+  </div>
+  {{#if setting.value.length}}
+    <button class="mdl-button mdl-js-button mdl-button--primary settings-edit-btn" {{action "updateSetting"}}>
+      ok
+    </button>
+  {{else}}
+    <button class="mdl-button mdl-js-button mdl-button--primary settings-edit-btn" disabled>
+      ok
+    </button>
+    <span class="sr-only">This feild can not be blank</span>
+  {{/if}}
+
 {{else}}
   <span class="settings-value">{{setting.value}}</span>
   <button class="mdl-button mdl-js-button mdl-button--primary settings-edit-btn" {{action "editMode" true}}>
