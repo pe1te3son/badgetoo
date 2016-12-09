@@ -1,0 +1,27 @@
+.outline-default
+  outline-color: $color4 !important
+
+.settings-item
+  position: relative
+  overflow: hidden !important
+  padding-right: 60px
+  height: 35px
+  line-height: 35px
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1)
+
+.settings-value
+  margin-left: 5px
+  color: $color2
+
+.settings-edit-btn
+  +position(absolute, 0 0 null null)
+
+.settings-input
+  display: inline-block !important
+  >input
+    outline-color: red
+    max-width: 150px
+
+.settings-input.outline-default
+  >input
+    outline-color: $color7 !important
