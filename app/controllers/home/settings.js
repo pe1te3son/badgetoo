@@ -28,26 +28,30 @@ export default Ember.Controller.extend({
   },
   currency: function () {
     let currency = this.get('model').findBy('id', 'currency');
+
     if (!currency) {
       return {
-        id: false,
+        isDefault: true,
+        id: 'currency',
         setting: 'Currency',
-        value: '£'
+        value: '$'
       };
     }
     return currency;
-  }.property('model.@each.value'),
+  }.property('model'),
 
   userName: function () {
     let userName = this.get('model').findBy('id', 'user-name');
 
     if (!userName) {
       return {
-        id: false,
+        isDefault: true,
+        id: 'user-name',
         setting: 'Name',
         value: 'Guest'
       };
     }
     return userName;
-  }.property('model.@each.value')
+  }.property('model'),
+
 });
