@@ -10,7 +10,14 @@ export default Ember.Mixin.create({
     let backgroundActiveEl = document.activeElement;
 
     // Focus first element in modal
-    firstEl.focus();
+    if (obj.hasOwnProperty('focusFirst')) {
+      if (obj.focusFirst !== false) {
+        this.get('focusableElements')[0].focus();
+      }
+    } else {
+      this.get('focusableElements')[0].focus();
+    }
+
     $(element).keydown(event => {
       // If Esc pressed
       if (event.keyCode === 27) {
