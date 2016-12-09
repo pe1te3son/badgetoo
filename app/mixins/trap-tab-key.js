@@ -1,14 +1,13 @@
 import Ember from 'ember';
 import $ from 'jquery';
-export default Ember.Mixin.create({
 
+export default Ember.Mixin.create({
+  focusableElementQuery: 'select:not([disabled]), button:not([disabled]), [tabindex="0"], input:not([disabled]), a[href]',
   lockBackground (obj) {
-    const focusableElementQuery = 'select:not([disabled]), button:not([disabled]), [tabindex="0"], input:not([disabled]), a[href]';
     const element = document.getElementById(obj.elementId);
-    const backgroundActiveEl = document.activeElement;
-    const focusableElements = element.querySelectorAll(focusableElementQuery);
-    const firstEl = focusableElements[0];
-    const lastEl = focusableElements[focusableElements.length - 1];
+    this.set('trapElementID', obj.elementId);
+    this.set('focusableElements', element.querySelectorAll(this.get('focusableElementQuery')));
+    let backgroundActiveEl = document.activeElement;
 
     // Focus first element in modal
     firstEl.focus();
@@ -16,29 +15,36 @@ export default Ember.Mixin.create({
       // If Esc pressed
       if (event.keyCode === 27) {
         backgroundActiveEl.focus();
+        $(`#${obj.elementId}`).off('keydown');
         obj.callback.call(this);
         return;
       }
 
       // Trap Tab key while modal open
-      this.trapTabKey(event, firstEl, lastEl);
+      this.trapTabKey(event);
+
+      event.stopPropagation();
     });
   },
 
-  trapTabKey (event, ...params) {
-    const [ firstEl, lastEl ] = params;
+  trapTabKey (event) {
     if (event.keyCode === 9) {
       if (event.shiftKey) {
-        if (document.activeElement === firstEl) {
+        if (document.activeElement === this.get('focusableElements')[0]) {
           event.preventDefault();
-          return lastEl.focus();
+          return this.get('focusableElements')[this.get('focusableElements').length - 1].focus();
         }
       } else {
-        if (document.activeElement === lastEl) {
+        if (document.activeElement === this.get('focusableElements')[this.get('focusableElements').length - 1]) {
           event.preventDefault();
-          return firstEl.focus();
+          return this.get('focusableElements')[0].focus();
         }
       }
     }
+  },
+
+  updateRegisteredKeys () {
+    const element = document.getElementById(this.get('trapElementID'));
+    return this.set('focusableElements', element.querySelectorAll(this.get('focusableElementQuery')));
   }
 });
