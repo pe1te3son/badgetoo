@@ -10,7 +10,7 @@ export default Ember.Component.extend({
     },
 
     updateSetting () {
-      console.log(this.get('setting').id);
+      this.sendAction('action', this.get('setting'));
       this.send('editMode', false);
     }
   }

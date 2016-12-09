@@ -54,4 +54,27 @@ export default Ember.Controller.extend({
     return userName;
   }.property('model'),
 
+  actions: {
+    updateSetting (obj) {
+      let payload = obj;
+
+      if (payload.isDefault) {
+        payload.isDefault = false;
+        let record = this.store.createRecord('setting', payload);
+        record.save();
+        return;
+      }
+
+      return this.store.findRecord('setting', payload.get('id'))
+        .then(response => {
+          response.set('value', payload.get('value'));
+          response.save();
+        })
+        .then(this.settingsSnackbar('Settings changed.'))
+        .catch(err => {
+          console.log(err);
+          this.settingsSnackbar('Ooops. Something went wrong.');
+        });
+    }
+  }
 });
