@@ -41,7 +41,7 @@
 {{else}}
   <td class="mdl-data-table__cell--non-numeric">{{expense.name}}</td>
   <td class="mdl-data-table__cell--non-numeric">{{expense.category}}</td>
-  <td>{{currency}}{{expense.sum}}</td>
+  <td><small>{{currency}}&nbsp;</small>{{expense.sum}}</td>
 
   <td class="options-cell-cont">
     <button class="mdl-button mdl-js-button mdl-button--icon" onclick={{ action "openOptions"}}>
