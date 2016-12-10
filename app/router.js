@@ -9,6 +9,7 @@ const Router = Ember.Router.extend({
 Router.map(function () {
   this.route('home', {path: '/'}, function () {
     this.route('settings');
+    this.route('currency-exchange');
   });
 });
 
