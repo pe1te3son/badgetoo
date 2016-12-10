@@ -10,7 +10,7 @@ export default Ember.Component.extend(trapTabKey, {
     this.lockBackground({elementId: 'user-settings-cont'}, () => {
       this.sendAction('action');
       Ember.run.later(() => {
-        $('.st--main-nav').children().first().focus();
+        $('.st--main-nav').children().last().focus();
       }, 100);
     });
 
