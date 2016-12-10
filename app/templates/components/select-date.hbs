@@ -1,6 +1,6 @@
 
 <div class="mdl-textfield mdl-js-textfield select-date-item mdl-textfield--floating-label">
-  <label class="mdl-textfield__label" for="select-year">Year</label>
+  <label class="mdl-textfield__label sr-only" for="select-year">Year</label>
   <select class="mdl-textfield__input" type="text" id="select-year" onchange={{ action "yearSelected" value="target.value"}}>
     {{#each uniqYears as |year|}}
       <option value={{year}}>{{year}}</option>
@@ -9,7 +9,7 @@
 </div>
 
 <div class="mdl-textfield mdl-js-textfield select-date-item mdl-textfield--floating-label">
-  <label class="mdl-textfield__label" for="select-month">Month</label>
+  <label class="mdl-textfield__label sr-only" for="select-month">Month</label>
   <select class="mdl-textfield__input" type="text" id="select-month" onchange={{ action "monthSelected" value="target.value"}}>
     {{#each uniqMonths as |month|}}
       <option value={{month}}>{{beatify-time-period month}}</option>
