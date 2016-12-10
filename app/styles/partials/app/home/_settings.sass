@@ -1,18 +1,10 @@
 .settings-card
-  position: absolute
-  top: 50px
   right: 80px
-  z-index: 100
-  min-width: 350px
-  background: white
   .mdl-card__title
     min-height: 125px
     @extend .argyle-pattern
-
   .mdl-card__title-text
     color: $color1
-
-  .mdl-card__supporting-text
 
 .user-settings-line
   color: $color2
@@ -20,3 +12,12 @@
 .user-settings
   padding: 0 10px
   margin-bottom: 30px
+
+@media screen and (max-width: 1024px)
+  .settings-card
+    right: 45px
+
+@media screen and (max-width: 500px)
+  .settings-card
+    right: 10px
+    left: 10px
