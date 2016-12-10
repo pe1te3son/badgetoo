@@ -4,10 +4,9 @@ import $ from 'jquery';
 export default Ember.Component.extend({
 
   chartOptions: {
-    title: 'Spendings by category',
     backgroundColor: '#f5f5f5',
     legend: {
-      position: 'right'
+      position: 'bottom'
     }
   },
 
@@ -65,19 +64,7 @@ export default Ember.Component.extend({
   },
 
   setChartWidth () {
-    const elWidth = this.$().width();
-
-    if (elWidth > 300) {
-      this.set('chartOptions.width', elWidth);
-    } else {
-      this.set('chartOptions.width', 300);
-    }
-
-    if ($(window).width() > 500) {
-      this.set('chartOptions.legend', 'right');
-    } else {
-      this.set('chartOptions.legend', 'bottom');
-    }
+    this.set('chartOptions.width', this.$().width());
   }
 
 });
