@@ -6,16 +6,12 @@ export default Ember.Component.extend(trapTabKey, {
 
   didInsertElement () {
     const _this = this;
-    const trapKeyCallback = function () {
-      _this.sendAction('action');
+
+    this.lockBackground({elementId: 'user-settings-cont'}, () => {
+      this.sendAction('action');
       Ember.run.later(() => {
         $('.st--main-nav').children().first().focus();
       }, 100);
-    };
-
-    this.lockBackground({
-      elementId: 'user-settings-cont',
-      callback: trapKeyCallback
     });
 
     $('.settings-item').click(function () {

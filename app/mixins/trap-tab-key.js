@@ -1,17 +1,24 @@
 import Ember from 'ember';
 import $ from 'jquery';
 
+/**
+* @name trapTabKey
+* @desc Traps tab key within comoponent
+* @param { string } elementId - id of element to trap key presses
+* @param { boolean } focusFirst - Whether to focus first focusable element or not. Default = true
+* @param { function } callback - function to be called on ESC
+*/
 export default Ember.Mixin.create({
   focusableElementQuery: 'select:not([disabled]), button:not([disabled]), [tabindex="0"], input:not([disabled]), a[href]',
-  lockBackground (obj) {
-    const element = document.getElementById(obj.elementId);
-    this.set('trapElementID', obj.elementId);
+  lockBackground (options, callback) {
+    const element = document.getElementById(options.elementId);
+    this.set('trapElementID', options.elementId);
     this.set('focusableElements', element.querySelectorAll(this.get('focusableElementQuery')));
     let backgroundActiveEl = document.activeElement;
 
     // Focus first element in modal
-    if (obj.hasOwnProperty('focusFirst')) {
-      if (obj.focusFirst !== false) {
+    if (options.hasOwnProperty('focusFirst')) {
+      if (options.focusFirst !== false) {
         this.get('focusableElements')[0].focus();
       }
     } else {
@@ -22,8 +29,8 @@ export default Ember.Mixin.create({
       // If Esc pressed
       if (event.keyCode === 27) {
         backgroundActiveEl.focus();
-        $(`#${obj.elementId}`).off('keydown');
-        obj.callback.call(this);
+        $(`#${options.elementId}`).off('keydown');
+        callback.call(this);
         return;
       }
 
