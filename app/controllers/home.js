@@ -1,9 +1,12 @@
 import Ember from 'ember';
 import moment from 'npm:moment';
+import $ from 'jquery';
 
 export default Ember.Controller.extend({
   spendingsMeter: 0.00,
   sumByCategory: null,
+  pollingInterval: 10000,
+  currencyRates: null,
 
   init () {
     this.set('currentMonthDisplaying', {
@@ -11,6 +14,37 @@ export default Ember.Controller.extend({
       year: parseInt(moment().format('YYYY')),
       isInPast: false
     });
+    Ember.run.once(() => {
+      this.onPoll();
+    });
+    this.startPolling();
+  },
+
+  displayCurrencyRates: function () {
+    return this.get('currencyRates');
+  }.property('currencyRates'),
+
+  schedulePollEvent (event, interval) {
+    var eventInterval = interval || this.get('pollingInterval');
+    return Ember.run.later(() => {
+      event.apply(this);
+      this.set('timer', this.schedulePollEvent(event));
+    }, eventInterval);
+  },
+
+  startPolling (interval) {
+    this.set('timer', this.schedulePollEvent(this.get('onPoll'), interval));
+  },
+
+  stopPolling () {
+    Ember.run.cancel(this.get('timer'));
+  },
+
+  onPoll () {
+    const _this = this;
+    return $.get('http://api.fixer.io/latest?base=USD')
+      .then(response => _this.set('currencyRates', response))
+      .catch(err => console.log(err));
   },
 
   dataToDisplay: function () {
