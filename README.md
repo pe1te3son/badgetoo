@@ -7,6 +7,8 @@
 
 Single page application that allows users to track their expenses. Application is using service worker and is fully capable of working offline.
 
+![Screenshort](https://github.com/pe1te3son/cdn/blob/master/spendings-tracker/spendings-tracker-github.jpg?raw=true)
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
