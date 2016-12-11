@@ -5,7 +5,7 @@ moduleFor('route:home/settings', 'Unit | Route | home/settings', {
   // needs: ['controller:foo']
 });
 
-test('it exists', function(assert) {
+test('it exists', function (assert) {
   let route = this.subject();
   assert.ok(route);
 });

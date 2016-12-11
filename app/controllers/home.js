@@ -82,7 +82,7 @@ export default Ember.Controller.extend({
     return filteredData;
   }.property('model.@each'),
 
-  updateSpendingsMeter: function (data) {
+  updateSpendingsMeter: function () {
     let sumCounted = 0;
     let sumByCategory = [];
     this.get('dataToDisplay').forEach(item => {
