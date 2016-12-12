@@ -34,10 +34,24 @@ export default Ember.Controller.extend({
         isDefault: true,
         id: 'currency',
         setting: 'Currency',
-        value: '$'
+        value: 'USD'
       };
     }
     return currency;
+  }.property('model'),
+
+  currencySymbol: function () {
+    let currencySymbol = this.get('model').findBy('id', 'currency-symbol');
+
+    if (!currencySymbol) {
+      return {
+        isDefault: true,
+        id: 'currency-symbol',
+        setting: 'Currency Symbol',
+        value: '$'
+      };
+    }
+    return currencySymbol;
   }.property('model'),
 
   userName: function () {
