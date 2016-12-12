@@ -10,7 +10,7 @@ import $ from 'jquery';
 */
 export default Ember.Mixin.create({
   focusableElementQuery: 'select:not([disabled]), button:not([disabled]), [tabindex="0"], input:not([disabled]), a[href]',
-  lockBackground (options, callback) {
+  trapTabKey (options, callback) {
     const element = document.getElementById(options.elementId);
     this.set('trapElementID', options.elementId);
     this.set('focusableElements', element.querySelectorAll(this.get('focusableElementQuery')));
@@ -35,13 +35,13 @@ export default Ember.Mixin.create({
       }
 
       // Trap Tab key while modal open
-      this.trapTabKey(event);
+      this.trapWithinElement(event);
 
       event.stopPropagation();
     });
   },
 
-  trapTabKey (event) {
+  trapWithinElement (event) {
     if (event.keyCode === 9) {
       if (event.shiftKey) {
         if (document.activeElement === this.get('focusableElements')[0]) {

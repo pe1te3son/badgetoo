@@ -31,7 +31,7 @@ export default Ember.Component.extend(trapTabKey, {
 
   openModal (el) {
     el.fadeIn(100);
-    this.lockBackground({elementId: this.get('elementId')}, () => {
+    this.trapTabKey({elementId: this.get('elementId')}, () => {
       // Close dialog on exit
       return el.fadeOut(100);
     });

@@ -7,7 +7,7 @@ export default Ember.Component.extend(trapTabKey, {
   didInsertElement () {
     const _this = this;
 
-    this.lockBackground({elementId: 'user-settings-cont'}, () => {
+    this.trapTabKey({elementId: 'user-settings-cont'}, () => {
       this.sendAction('action');
       Ember.run.later(() => {
         $('.st--main-nav').children().last().focus();

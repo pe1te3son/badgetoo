@@ -21,7 +21,7 @@ export default Ember.Component.extend(trapTabKey, {
       });
 
       event.stopPropagation();
-      this.lockBackground({
+      this.trapTabKey({
         elementId: `${this.get('elementId')}-options`,
         focusFirst: false
       }, () => {
