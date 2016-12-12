@@ -14,11 +14,6 @@ export default Ember.Controller.extend({
     });
   },
 
-  isCurrencyExchangeActive: function () {
-    // Change settins icon and link based on current path
-    return this.get('currentRouteName') === 'home.currency-exchange';
-  }.property('currentRouteName'),
-
   areSettingsActive: function () {
     // Change settins icon and link based on current path
     return this.get('currentRouteName') === 'home.settings';

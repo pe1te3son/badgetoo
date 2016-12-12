@@ -7,19 +7,6 @@
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation st--main-nav">
-
-        {{#if isCurrencyExchangeActive}}
-          {{#link-to 'home' class="mdl-navigation__link st--icon-link"}}
-            <span class="sr-only">Close</span>
-            <i class="material-icons" aria-hidden="true">clear</i>
-          {{/link-to}}
-        {{else}}
-          {{#link-to 'home.currency-exchange' class="mdl-navigation__link st--icon-link"}}
-            <span class="sr-only">Currency exchange</span>
-            <i class="material-icons" aria-hidden="true">attach_money</i>
-          {{/link-to}}
-        {{/if}}
-
         {{#if areSettingsActive}}
           {{#link-to 'home' class="mdl-navigation__link st--icon-link"}}
             <span class="sr-only">Close</span>
