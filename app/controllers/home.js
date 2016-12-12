@@ -42,9 +42,13 @@ export default Ember.Controller.extend({
 
   onPoll () {
     const _this = this;
-    return $.get('http://api.fixer.io/latest?base=USD')
-      .then(response => _this.set('currencyRates', response))
-      .catch(err => console.log(err));
+    return $.ajax('http://api.fixer.io/latest?base=USD', {
+      dataType: 'jsonp'
+    })
+      .done(response => {
+        _this.set('currencyRates', response);
+      })
+      .fail(err => console.log(err));
   },
 
   dataToDisplay: function () {
