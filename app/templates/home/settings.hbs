@@ -8,11 +8,26 @@
     <p>Change your settings</p>
     <ul class="st--list-unstyled user-settings">
 
-      {{user-setting setting=userName class="settings-item" action="updateSetting"}}
+      <li class="settings-item">
+        <span>Name:</span>
+        {{#user-setting value=model.userName  propertyName="userName" action="updateSetting" class="settings-value"}}
+            <span>{{model.userName}}</span>
+        {{/user-setting}}
+      </li>
 
-      {{user-setting-currency setting=currency class="settings-item" action="updateSetting"}}
+      <li class="settings-item">
+        <span>Currency:</span>
+        {{#user-setting-currency value=model.currencyName  propertyName="currencyName" action="updateSetting" class="settings-value"}}
+          <span>{{model.currencyName}}</span>
+        {{/user-setting-currency}}
+      </li>
 
-      {{user-setting setting=currencySymbol class="settings-item" action="updateSetting"}}
+      <li class="settings-item">
+        <span>Currency Symbol:</span>
+        {{#user-setting value=model.currencySymbol  propertyName="currencySymbol" action="updateSetting" class="settings-value"}}
+            <span>{{model.currencySymbol}}</span>
+        {{/user-setting}}
+      </li>
 
     </ul>
   {{/user-settings-wrapper}}
