@@ -15,9 +15,19 @@ export default Ember.Controller.extend({
       isInPast: false
     });
     Ember.run.once(() => {
-      this.onPoll();
+      this.store.findRecord('setting', 'st-setting')
+        .then(response => {
+          this.set('pollUrl', `http://api.fixer.io/latest?base=${response.get('currencyName')}`);
+          this.onPoll();
+        })
+        .catch(err => {
+          if (typeof err === 'undefined') {
+            this.set('pollUrl', 'http://api.fixer.io/latest?base=USD');
+            this.onPoll();
+          }
+        });
     });
-    this.startPolling();
+    //this.startPolling();
   },
 
   displayCurrencyRates: function () {
@@ -42,7 +52,7 @@ export default Ember.Controller.extend({
 
   onPoll () {
     const _this = this;
-    return $.ajax('http://api.fixer.io/latest?base=USD', {
+    return $.ajax(_this.get('pollUrl'), {
       dataType: 'jsonp'
     })
       .done(response => {
@@ -119,6 +129,7 @@ export default Ember.Controller.extend({
     return data;
   }.property('sumByCategory'),
 
+  // ACTIONS
   actions: {
 
     timePeriodHasChanged (timePeriod) {
@@ -139,5 +150,5 @@ export default Ember.Controller.extend({
       let expense = this.store.createRecord('expense', setTimePeriodRecord);
       expense.save();
     }
-  }
+  }// ACTIONS
 });
