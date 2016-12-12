@@ -4,13 +4,15 @@
     <h2 class="mdl-card__title-text">Settings</h2>
   </div>
 
-  {{#user-settings-wrapper class="mdl-card__supporting-text" action="closeSettings"}}
+  {{#user-settings-wrapper class="st-card__supporting-text" action="closeSettings"}}
     <p>Change your settings</p>
     <ul class="st--list-unstyled user-settings">
 
       {{user-setting setting=userName class="settings-item" action="updateSetting"}}
 
-      {{user-setting setting=currency class="settings-item" action="updateSetting"}}
+      {{user-setting-currency setting=currency class="settings-item" action="updateSetting"}}
+
+      {{user-setting setting=currencySymbol class="settings-item" action="updateSetting"}}
 
     </ul>
   {{/user-settings-wrapper}}
