@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   userSettings: Ember.inject.service(),
-  tagName: 'li',
   editMode: false,
 
   actions: {
@@ -11,12 +10,15 @@ export default Ember.Component.extend({
     },
 
     updateSetting () {
-      const originalValue = this.get('setting.value');
+      const originalValue = this.get('value');
       const newValue = this.get('valueChanged');
 
       if (originalValue !== newValue) {
-        this.set('setting.value', newValue);
-        this.sendAction('action', this.get('setting'));
+        this.set('value', newValue);
+        this.sendAction('action', {
+          propertyName: this.get('propertyName'),
+          value: this.get('valueChanged')
+        });
       }
       this.send('editMode', false);
     },
@@ -27,15 +29,17 @@ export default Ember.Component.extend({
   },
 
   didInsertElement () {
-    this.set('currencyNames', this.get('userSettings').currencyNames());
+    this.get('userSettings').currencyNames('all')
+      .then(response => this.set('currencyNames', response));
+
     // Set initial value to compare on update
-    this.set('valueChanged', this.get('setting.value'));
+    this.set('valueChanged', this.get('value'));
   },
 
   isInEditMode: function () {
     if (this.get('editMode')) {
       Ember.run.later(() => {
-        this.$().find(`option[value=${this.get('setting.value')}]`).attr('selected', 'selected');
+        this.$().find(`option[value=${this.get('value')}]`).attr('selected', 'selected');
       });
     }
   }.observes('editMode')

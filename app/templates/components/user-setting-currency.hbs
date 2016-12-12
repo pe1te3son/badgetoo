@@ -1,13 +1,12 @@
-<span class="settings-name">{{setting.setting}}:</span>
 {{#if editMode}}
 
-  <select class="settings-input {{if setting.value.length 'outline-default'}}" onchange={{ action "currencySelected" value="target.value"}}>
+  <select class="settings-input {{if value.length 'outline-default'}}" onchange={{ action "currencySelected" value="target.value"}}>
       {{#each currencyNames as |currencyName|}}
         <option value={{currencyName}}>{{currencyName}}</option>
       {{/each}}
   </select>
 
-  {{#if setting.value.length}}
+  {{#if value.length}}
     <button class="mdl-button mdl-js-button mdl-button--primary settings-edit-btn" {{action "updateSetting"}}>
       ok
     </button>
