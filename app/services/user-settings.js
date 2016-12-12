@@ -11,5 +11,8 @@ export default Ember.Service.extend({
           return '$';
         }
       });
+
+  currencyNames () {
+    return ['AUD', 'CAD', 'CHF', 'EUR', 'GBP', 'JPY', 'NZD', 'RUB', 'USD'];
   }
 });
