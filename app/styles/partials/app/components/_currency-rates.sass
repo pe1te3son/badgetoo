@@ -16,10 +16,20 @@
   //   background: rgba(0, 0, 0, 0.1)
 .cur-rates-item-value
   margin-right: 8px
-    
+
 .cur-rates-item-icon
-  +position(absolute, 2px 5px null null)
-  font-size: 1.3rem
+  +position(absolute, 4px 5px null null)
+  font-size: 1.2rem
 
 .cur-rates-item-icon.rising
   color: $color4 !important
+
+.cur-rates-item-icon.falling
+  color: red !important
+
+.cur-rates-item-icon.nochange
+  display: block
+  +size(10px)
+  border-radius: 50%
+  margin: 4px 4px 0 0
+  background-color: $color9
