@@ -16,7 +16,7 @@
   {{/if}}
 
 {{else}}
-  <span class="settings-value">{{setting.value}}</span>
+  {{yield}}
   <button class="mdl-button mdl-js-button mdl-button--primary settings-edit-btn" {{action "editMode" true}}>
     edit
   </button>
