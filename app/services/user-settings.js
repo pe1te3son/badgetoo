@@ -23,5 +23,25 @@ export default Ember.Service.extend({
         }
       });
   },
+
+  currencyNames (value) {
+    return this.get('store').findRecord('setting', 'st-setting')
+      .then(response => {
+        if (value === 'all') {
+          return this.get('currencies');
+        }
+
+        return this.get('currencies').filter(item => item !== response.get('currencyName'));
+      })
+      .catch(err => {
+        if (typeof err === 'undefined') {
+          if (value === 'all') {
+            return this.get('currencies');
+          }
+
+          return this.get('currencies').filter(item => item !== 'USD');
+        }
+      });
   }
+
 });
