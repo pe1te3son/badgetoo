@@ -43,13 +43,9 @@ export default Ember.Controller.extend({
 
   onPoll () {
     const _this = this;
-    return $.ajax(_this.get('pollUrl'), {
-      dataType: 'jsonp'
-    })
-      .done(response => {
-        _this.set('currencyRates', response);
-      })
-      .fail(err => console.log(err));
+    return $.get(_this.get('pollUrl'))
+      .then(response => _this.set('currencyRates', response))
+      .catch(err => console.log(err));
   },
 
   dataToDisplay: function () {
