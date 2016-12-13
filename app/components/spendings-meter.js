@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   userSettings: Ember.inject.service('user-settings'),
 
   didReceiveAttrs () {
-    this.get('userSettings').currency()
+    this.get('userSettings').currencySymbol()
       .then(response => this.set('currency', response));
 
     this.set('todaysDate', {

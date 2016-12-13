@@ -12,7 +12,7 @@ export default Ember.Component.extend({
 
   init () {
     this._super();
-    this.get('userSettings').currency()
+    this.get('userSettings').currencySymbol()
       .then(response => this.set('currency', response));
   },
 
