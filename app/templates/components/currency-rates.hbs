@@ -1,8 +1,8 @@
 <ul class="st--list-unstyled cur-rates-list">
   {{#each currenciesFiltered as |val|}}
     <li class="cur-rates-item">
-      <i class="material-icons cur-rates-item-icon rising">arrow_upward</i>
-      <span class="cur-rates-item-value fonts-light">{{val.cur}}:</span>
+      {{inflation-icon val.hasFallen}}
+      <span class="cur-rates-item-value fonts-light">{{val.currency}}:</span>
       <span class="cur-rates-item-value">{{val.value}}</span>
     </li>
   {{/each}}
