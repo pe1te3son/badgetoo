@@ -1,6 +1,13 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  setting: DS.attr('string'),
-  value: DS.attr('string')
+  currencyName: DS.attr('string', {
+    defaultValue () { return 'USD'; }
+  }),
+  currencySymbol: DS.attr('string', {
+    defaultValue () { return '$'; }
+  }),
+  userName: DS.attr('string', {
+    defaultValue () { return 'Guest'; }
+  })
 });

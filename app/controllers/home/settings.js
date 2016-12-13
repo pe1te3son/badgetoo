@@ -26,47 +26,6 @@ export default Ember.Controller.extend({
     };
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
   },
-  currency: function () {
-    let currency = this.get('model').findBy('id', 'currency');
-
-    if (!currency) {
-      return {
-        isDefault: true,
-        id: 'currency',
-        setting: 'Currency',
-        value: 'USD'
-      };
-    }
-    return currency;
-  }.property('model'),
-
-  currencySymbol: function () {
-    let currencySymbol = this.get('model').findBy('id', 'currency-symbol');
-
-    if (!currencySymbol) {
-      return {
-        isDefault: true,
-        id: 'currency-symbol',
-        setting: 'Currency Symbol',
-        value: '$'
-      };
-    }
-    return currencySymbol;
-  }.property('model'),
-
-  userName: function () {
-    let userName = this.get('model').findBy('id', 'user-name');
-
-    if (!userName) {
-      return {
-        isDefault: true,
-        id: 'user-name',
-        setting: 'Name',
-        value: 'Guest'
-      };
-    }
-    return userName;
-  }.property('model'),
 
   actions: {
     closeSettings () {
@@ -74,24 +33,11 @@ export default Ember.Controller.extend({
     },
 
     updateSetting (obj) {
-      let payload = obj;
-
-      if (payload.isDefault) {
-        payload.isDefault = false;
-        let record = this.store.createRecord('setting', payload);
-        record.save();
-        return;
-      }
-
-      return this.store.findRecord('setting', payload.get('id'))
+      return this.store.findRecord('setting', 'st-setting')
         .then(response => {
-          response.set('value', payload.get('value'));
+          response.set(obj.propertyName, obj.value);
           response.save();
-        })
-        .then(this.settingsSnackbar('Settings changed.'))
-        .catch(err => {
-          console.log(err);
-          this.settingsSnackbar('Ooops. Something went wrong.');
+          return this.settingsSnackbar('Settings changed');
         });
     }
   }
