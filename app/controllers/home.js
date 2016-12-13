@@ -15,24 +15,14 @@ export default Ember.Controller.extend({
       isInPast: false
     });
     Ember.run.once(() => {
-      this.store.findRecord('setting', 'st-setting')
-        .then(response => {
-          this.set('pollUrl', `http://api.fixer.io/latest?base=${response.get('currencyName')}`);
+      this.get('userSettings').currentCurrencyName()
+        .then(currencyName => {
+          this.set('pollUrl', `https://api.fixer.io/latest?base=${currencyName}`);
           this.onPoll();
-        })
-        .catch(err => {
-          if (typeof err === 'undefined') {
-            this.set('pollUrl', 'http://api.fixer.io/latest?base=USD');
-            this.onPoll();
-          }
         });
     });
     //this.startPolling();
   },
-
-  displayCurrencyRates: function () {
-    return this.get('currencyRates');
-  }.property('currencyRates'),
 
   schedulePollEvent (event, interval) {
     var eventInterval = interval || this.get('pollingInterval');
