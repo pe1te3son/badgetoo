@@ -17,7 +17,7 @@ export default Ember.Component.extend(trapTabKey, {
     $('.settings-item').click(function () {
       Ember.run.later(() => {
         _this.updateRegisteredKeys();
-        $(this).find('input').focus();
+        $(this).find('input, select').focus();
       }, 100);
     });
   }
