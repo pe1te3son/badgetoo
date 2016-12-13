@@ -2,10 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
   store: Ember.inject.service(),
+  currencies: ['AUD', 'CAD', 'CHF', 'EUR', 'GBP', 'JPY', 'NZD', 'RUB', 'USD'],
 
-  currency () {
-    return this.get('store').findRecord('setting', 'currency-symbol')
-      .then(response => response.get('value'))
+  currencySymbol () {
+    return this.get('store').findRecord('setting', 'st-setting')
+      .then(response => response.get('currencySymbol'))
       .catch(err => {
         if (typeof err === 'undefined') {
           return '$';
@@ -13,7 +14,14 @@ export default Ember.Service.extend({
       });
   },
 
-  currencyNames () {
-    return ['AUD', 'CAD', 'CHF', 'EUR', 'GBP', 'JPY', 'NZD', 'RUB', 'USD'];
+  currentCurrencyName () {
+    return this.get('store').findRecord('setting', 'st-setting')
+      .then(response => response.get('currencyName'))
+      .catch(err => {
+        if (typeof err === 'undefined') {
+          return 'USD';
+        }
+      });
+  },
   }
 });
