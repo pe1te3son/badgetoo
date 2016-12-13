@@ -3,9 +3,10 @@ import moment from 'npm:moment';
 import $ from 'jquery';
 
 export default Ember.Controller.extend({
+  userSettings: Ember.inject.service(),
   spendingsMeter: 0.00,
   sumByCategory: null,
-  pollingInterval: 10000,
+  pollingInterval: 60000,
   currencyRates: null,
 
   init () {
