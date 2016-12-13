@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  tagName: 'li',
   editMode: false,
 
   actions: {
@@ -10,7 +9,10 @@ export default Ember.Component.extend({
     },
 
     updateSetting () {
-      this.sendAction('action', this.get('setting'));
+      this.sendAction('action', {
+        value: this.get('value'),
+        propertyName: this.get('propertyName')
+      });
       this.send('editMode', false);
     }
   }
