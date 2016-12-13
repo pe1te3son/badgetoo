@@ -11,7 +11,9 @@
         {{pie-chart class="mdl-card--bg-color st--pie-chart" data=formatedChartData}}
       </div>
       <div class="mdl-tabs__panel" id="currency-panel">
-        {{currency-rates data=displayCurrencyRates}}
+        {{#if currencyRates}}
+          {{currency-rates data=currencyRates class="currency-rates-cont"}}
+        {{/if}}
       </div>
     </div>
 
