@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
           this.onPoll();
         });
     });
-    //this.startPolling();
+    this.startPolling();
   },
 
   schedulePollEvent (event, interval) {
