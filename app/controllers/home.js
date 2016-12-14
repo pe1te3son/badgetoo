@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
     Ember.run.once(() => {
       this.get('userSettings').currentCurrencyName()
         .then(currencyName => {
-          this.set('pollUrl', `https://api.fixer.io/latest?base=${currencyName}`);
+          this.set('pollUrl', `https://api.fixer.io/${moment().format('YYYY-MM-DD')}?base=${currencyName}`);
           this.onPoll();
         });
     });
