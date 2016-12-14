@@ -15,7 +15,7 @@
     border-bottom: none !important
 
 .main-content
-  min-height: calc(100vh - 164px)
+  min-height: calc(100vh - 165px)
 
 .spending-meter-sep-small-screen
   display: none
@@ -25,6 +25,11 @@
 
 #st--btn-add-expense-small-screen
   display: none
+
+
+@media screen and (max-width: 1024px)
+  .main-content
+    min-height: calc(100vh - 157px)
 
 @media screen and (max-width: 839px)
   #spending-meter-cont
