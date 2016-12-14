@@ -14,8 +14,10 @@
         </p>
       </div>
     {{else}}
-      <span>{{todaysDate.dayName}}</span>
-      <em>{{todaysDate.date}}</em>
+      <div class="date-cont">
+        <span class="date-day">{{todaysDate.dayName}}</span>
+        <em class="date-date">{{todaysDate.date}}</em>
+      </div>
     {{/if}}
   </div>
 </div>
