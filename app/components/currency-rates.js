@@ -27,13 +27,11 @@ export default Ember.Component.extend({
   },
 
   fetchPreviousDayCurrencyRates (userCurrencyName) {
-    return $.ajax(`https://api.fixer.io/${moment().subtract(2, 'day').format('YYYY-MM-DD')}?base=${userCurrencyName}`, {
-      dataType: 'jsonp'
-    })
-      .done(response => {
+    return $.get(`https://api.fixer.io/${moment().subtract(2, 'day').format('YYYY-MM-DD')}?base=${userCurrencyName}`)
+      .then(response => {
         this.calculateInflationRates(response.rates);
       })
-      .fail(() => {
+      .catch(() => {
         console.log('Failed to fetch previous day rates');
       });
   },
