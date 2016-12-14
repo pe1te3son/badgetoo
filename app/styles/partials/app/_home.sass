@@ -1,4 +1,4 @@
-#st--btn-add-expense
+.st--btn-add-expense
   margin-right: 35px
 
 #spending-meter-cont
@@ -11,3 +11,51 @@
 .st--tabs
   .mdl-tabs__panel
     min-height: 260px
+  .mdl-tabs__tab-bar
+    border-bottom: none !important
+
+.main-content
+  min-height: calc(100vh - 164px)
+
+.spending-meter-sep-small-screen
+  display: none
+
+#st--btn-add-expense
+  margin-right: 35px
+
+#st--btn-add-expense-small-screen
+  display: none
+
+@media screen and (max-width: 839px)
+  #spending-meter-cont
+    text-align: center
+
+  #spending-meter-cont
+    order: 0
+
+  #charts-cont
+    order: 1
+
+  #st--btn-add-expense
+    display: none
+
+  #st--btn-add-expense-small-screen
+    display: inline-block
+    +position(fixed, null 20px 50px null)
+    z-index: 9998
+    i
+      color: white
+
+    .isInPast-color
+      i
+        color: black
+
+  .st--btn-add-expense-text
+    position: absolute
+    width: 1px
+    height: 1px
+    padding: 0
+    margin: -1px
+    overflow: hidden
+    clip: rect(0, 0, 0, 0)
+    border: 0

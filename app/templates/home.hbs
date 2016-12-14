@@ -1,39 +1,55 @@
-<main class="mdl-layout__content">
-  <div class="page-content mdl-grid st--grid-max">
+<div class="mdl-layout__content site-page">
+  <main class="main-content">
+    <div class="page-content mdl-grid st--grid-max">
 
-    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet st--tabs">
-      <div class="mdl-tabs__tab-bar">
-          <a href="#chart" class="mdl-tabs__tab is-active">Chart</a>
-          <a href="#currency-panel" class="mdl-tabs__tab">Currency</a>
+      <div class="mdl-card mdl-card--bg-color mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet" id="charts-cont">
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect st--tabs">
+          <div class="mdl-tabs__tab-bar">
+              <a href="#chart" class="mdl-tabs__tab is-active">Chart</a>
+              <a href="#currency-panel" class="mdl-tabs__tab">Exchange rates</a>
+          </div>
+
+          <div class="mdl-tabs__panel is-active" id="chart">
+            {{pie-chart class="mdl-card--bg-color st--pie-chart" data=formatedChartData}}
+          </div>
+          <div class="mdl-tabs__panel" id="currency-panel">
+            {{#if currencyRates}}
+              {{currency-rates data=currencyRates class="currency-rates-cont"}}
+            {{/if}}
+          </div>
+        </div>
       </div>
 
-      <div class="mdl-tabs__panel is-active" id="chart">
-        {{pie-chart class="mdl-card--bg-color st--pie-chart" data=formatedChartData}}
-      </div>
-      <div class="mdl-tabs__panel" id="currency-panel">
-        {{#if currencyRates}}
-          {{currency-rates data=currencyRates class="currency-rates-cont"}}
-        {{/if}}
-      </div>
-    </div>
+      <div class="mdl-card mdl-card--bg-color text-right mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet" id="spending-meter-cont">
+        {{select-date class="mdl-cell mdl-cell_no-margin mdl-cell--12-col select-date-cont" timePeriods=timePeriodsList currentDate=currentMonthDisplaying action="timePeriodHasChanged"}}
+        {{spendings-meter data=spendingsMeter class="mdl-cell mdl-cell--12-col" isInPast=currentMonthDisplaying.isInPast}}
+        <div class="mdl-cell mdl-cell--12-col">
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent {{if currentMonthDisplaying.isInPast 'isInPast-color'}}" id="st--btn-add-expense" em-modal-open="add-expense-modal">
+            <span class="st--btn-add-expense-text">Add Expense</span>
+          </button>
+        </div>
+        <hr class="spending-meter-sep-small-screen">
+      </div>{{!-- /#spending-meter-cont --}}
 
-    <div class="mdl-card--bg-color text-right mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet" id="spending-meter-cont">
-      {{select-date class="mdl-cell mdl-cell_no-margin mdl-cell--12-col select-date-cont" timePeriods=timePeriodsList currentDate=currentMonthDisplaying action="timePeriodHasChanged"}}
-      {{spendings-meter data=spendingsMeter class="mdl-cell mdl-cell--12-col" isInPast=currentMonthDisplaying.isInPast}}
+    </div>{{!-- /.mdl-grid --}}
+
+    <div class="mdl-grid st--grid-max">
       <div class="mdl-cell mdl-cell--12-col">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent {{if currentMonthDisplaying.isInPast 'isInPast-color'}}" id="st--btn-add-expense" em-modal-open="add-expense-modal">
-          Add Expense
-        </button>
+        {{expenses-table data=dataToDisplay id="expenses-table"}}
       </div>
-    </div>{{!-- /#spending-meter-cont --}}
+    </div>{{!-- /.mdl-grid --}}
+  </main>
 
-  </div>{{!-- /.mdl-grid --}}
+  {{outlet}}
 
-  <div class="mdl-grid st--grid-max">
-    <div class="mdl-cell mdl-cell--12-col">
-      {{expenses-table data=dataToDisplay id="expenses-table"}}
     </div>
-  </div>{{!-- /.mdl-grid --}}
+
+  <div id="st--btn-add-expense-small-screen">
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored {{if currentMonthDisplaying.isInPast 'isInPast-color'}}"  em-modal-open="add-expense-modal">
+      <span class="sr-only">Add Expense</span>
+      <i class="material-icons" aria-hidden="true">add</i>
+    </button>
+  </div>
 
   {{#em-modal class="em--modal" id="add-expense-modal"}}
     {{add-expense class="mdl-dialog st--form-add-expense" role="dialog" aria-labelledby="dialog-title" action="saveRecord"}}
@@ -43,7 +59,6 @@
     <div class="mdl-snackbar__text"></div>
     <button class="mdl-snackbar__action" type="button"></button>
   </div>
-</main>
 
-{{outlet}}
   <div id="overlay"></div>
+</div>
