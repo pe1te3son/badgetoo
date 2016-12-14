@@ -1,4 +1,5 @@
 /* eslint-env serviceworker */
+/* globals fetch */
 (function () {
   'use strict';
   var CACHE_VERSION = 'v1';
