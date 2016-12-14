@@ -42,7 +42,14 @@
 
   {{outlet}}
 
+  <footer class="mdl-mini-footer">
+    <div class="mdl-mini-footer__left-section">
+      <div class="mdl-logo">Spendings Tracker</div>
+      <ul class="mdl-mini-footer__link-list">
+        <li><small>Copyright (c) {{copyrightYear}} Peter Janak All Rights Reserved.</small></li>
+      </ul>
     </div>
+  </footer>
 
   <div id="st--btn-add-expense-small-screen">
     <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored {{if currentMonthDisplaying.isInPast 'isInPast-color'}}"  em-modal-open="add-expense-modal">
