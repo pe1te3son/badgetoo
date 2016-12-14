@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
   sumByCategory: null,
   pollingInterval: 60000,
   currencyRates: null,
+  copyrightYear: moment().format('YYYY'),
 
   init () {
     this.set('currentMonthDisplaying', {
