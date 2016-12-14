@@ -24,7 +24,7 @@
     );
   });
 
-  this.addEventListener('activate', function (event) {
+  self.addEventListener('activate', function (event) {
     var cacheWhitelist = [CACHE_VERSION];
 
     event.waitUntil(
