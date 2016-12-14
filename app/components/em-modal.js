@@ -20,20 +20,26 @@ export default Ember.Component.extend(trapTabKey, {
       }
     });
 
+    $('#overlay').click(() => {
+      this.closeModal();
+    });
+
     $closeBtn.click(() => {
       this.closeModal();
     });
   },
 
   closeModal () {
-    this.$().fadeOut(100);
+    $('#overlay').fadeOut(200);
+    this.$().fadeOut(200);
   },
 
   openModal (el) {
-    el.fadeIn(100);
+    $('#overlay').fadeIn(200);
+    el.fadeIn(200);
     this.trapTabKey({elementId: this.get('elementId')}, () => {
       // Close dialog on exit
-      return el.fadeOut(100);
+      return this.closeModal();
     });
   }
 });

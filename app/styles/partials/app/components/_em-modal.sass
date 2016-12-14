@@ -5,7 +5,6 @@
   z-index: 10000 !important
   width: 100vw
   height: 100vh
-  background: rgba(0, 0, 0, 0.5)
   text-align: center
   padding-top: 66px
   display: none
@@ -14,16 +13,25 @@
 .em--modal-content
   text-align: left
   display: inline-block
-  max-width: 98%
-  min-width: 300px
+  max-width: 95%
   position: relative
-
 
 .em--close-modal
   position: absolute
   top: 20px
   right: 20px
 
+#overlay
+  display: none
+  +position(fixed, 0 0 0 0)
+  z-index: 9999 !important
+  background: rgba(0, 0, 0, 0.5)
+
 @media screen and (max-width: 1024px)
   .em--modal
     padding-top: 58px
+
+@media screen and (max-width: 800px)
+  .em--modal
+    position: absolute
+    padding-top: 2px
