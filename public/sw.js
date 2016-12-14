@@ -1,7 +1,7 @@
 /* eslint-env serviceworker */
 (function () {
   'use strict';
-  var CACHE_VERSION = 'v3';
+  var CACHE_VERSION = 'v1';
 
   self.addEventListener('install', function (event) {
     event.waitUntil(
