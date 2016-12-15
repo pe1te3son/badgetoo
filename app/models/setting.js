@@ -9,5 +9,8 @@ export default DS.Model.extend({
   }),
   userName: DS.attr('string', {
     defaultValue () { return 'Guest'; }
+  }),
+  monthlyLimit: DS.attr('number', {
+    defaultValue () { return 1000; }
   })
 });
