@@ -1,10 +1,11 @@
 {{#if editMode}}
 
-  <div class="settings-input {{if value.length 'outline-default'}}">
+
+  <div class="settings-input {{if isValid 'outline-default'}}">
     {{input value=value}}
   </div>
 
-  {{#if value.length}}
+  {{#if isValid}}
     <button class="mdl-button mdl-js-button mdl-button--primary settings-edit-btn" {{action "updateSetting"}}>
       ok
     </button>
