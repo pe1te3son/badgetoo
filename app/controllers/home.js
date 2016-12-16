@@ -117,6 +117,32 @@ export default Ember.Controller.extend({
     return data;
   }.property('sumByCategory'),
 
+  notifyExceededExpensesLimit: function () {
+    return this.get('userSettings').monthlyExpensesLimit()
+      .then(response => {
+        if (this.get('spendingsMeter') > response) {
+          Ember.run.later(() => {
+            this.exceededExpensesLimitSnackbar('Monthly expenses limit alert!');
+          }, 2000);
+        }
+      });
+  }.observes('spendingsMeter'),
+
+  exceededExpensesLimitSnackbar (message) {
+    const _this = this;
+    const snackbarContainer = document.querySelector('#expenses-limit-snackbar');
+    const handler = function () {
+      _this.transitionToRoute('home.settings');
+    };
+
+    const data = {
+      message,
+      timeout: 4000,
+      actionHandler: handler,
+      actionText: 'Settings'
+    };
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+  },
   // ACTIONS
   actions: {
 
