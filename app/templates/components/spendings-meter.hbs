@@ -3,7 +3,9 @@
   <div class="current-spendings">
     <div class="spendings-currency">{{currency}}</div>
     <div class="spendings-value">{{data}}</div>
-    {{spendings-meter-color-indicator class="expenses-limmit-indicator" value=data}}
+    <div class="limit-indicator-cont">
+      {{spendings-meter-color-indicator class="expenses-limmit-indicator" value=data}}
+    </div>
   </div>
 
   <div class="today-date-display">
