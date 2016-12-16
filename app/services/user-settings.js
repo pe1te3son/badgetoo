@@ -42,6 +42,16 @@ export default Ember.Service.extend({
           return this.get('currencies').filter(item => item !== 'USD');
         }
       });
+  },
+
+  monthlyExpensesLimit () {
+    return this.get('store').findRecord('setting', 'st-setting')
+      .then(response => response.get('monthlyLimit'))
+      .catch(err => {
+        if (typeof err === 'undefined') {
+          return 1000;
+        }
+      });
   }
 
 });
