@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
   userSettings: Ember.inject.service(),
   spendingsMeter: 0.00,
   sumByCategory: null,
-  pollingInterval: 60000,
+  pollingInterval: 8640000,
   currencyRates: null,
   copyrightYear: moment().format('YYYY'),
 
