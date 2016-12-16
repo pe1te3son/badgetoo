@@ -29,6 +29,13 @@
         {{/user-setting}}
       </li>
 
+      <li class="settings-item">
+        <span>Expenses warning:&nbsp;</span>
+        {{#user-setting value=model.monthlyLimit  propertyName="monthlyLimit" action="updateSetting" class="settings-value" pattern="^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$"}}
+            <small>{{model.currencySymbol}}</small><span>{{model.monthlyLimit}}</span>
+        {{/user-setting}}
+      </li>
+
     </ul>
   {{/user-settings-wrapper}}
 
