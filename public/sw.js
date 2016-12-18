@@ -2,7 +2,7 @@
 /* globals fetch */
 (function () {
   'use strict';
-  var CACHE_VERSION = 'v1';
+  var CACHE_VERSION = 'v1-st-stable';
 
   self.addEventListener('install', function (event) {
     event.waitUntil(
